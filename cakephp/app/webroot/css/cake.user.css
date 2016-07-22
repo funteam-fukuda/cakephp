@@ -4,5 +4,6 @@ table td.post-title	{
 }
 
 form#PostSearchForm div.checkbox {
-	
+	margin: 0;
+	padding: 0;
 }

@@ -1,3 +1,5 @@
+<?php echo $this->Html->script('searchform.js'); ?>
+<?php echo $this->Html->script('slideshow.js'); ?>
 <?php echo $this->Html->css('cake.user'); ?>
 
 <?php echo $this->Html->link(
@@ -5,28 +7,6 @@
 
 <?php echo $this->Html->link(
 	'Logout', array('controller' => 'users', 'action' => 'logout')); ?>
-
-
-<?php
-echo $this->Form->create('Post', array(
-	'novalidate' => true,
-	'url' => array_merge(array('action' => 'search'), $this->params['pass'])
-	));
-echo $this->Form->input('title', array('div' => false));
-echo $this->Form->input('Post.category', array(
-	'type' => 'select',
-	'multiple' => 'checkbox',
-	'options' => $categories
-));
-echo $this->Form->input('Post.tag', array(
-	'type' => 'select',
-	'multiple' => 'checkbox',
-	'options' => $tags
-));
-echo $this->Form->submit('Search');
-echo $this->Form->end();
-?>
-
 
 <h1><?php echo Configure::read('site_name'); ?></h1>
 <table style="width:800px;">
@@ -56,10 +36,12 @@ Tag:
 </tr>
 <tr><td>
 <?php
+// http://192.168.33.10/cakephp/files/attachment/photo/14/maxresdefault.jpg
 for ($i=0;$i<count($post['Attachment']);$i++) {
 	if ($post['Attachment'][$i]['photo_dir'] != '') {
-		echo $this->Html->image('/files/attachment/photo/' . $post['Attachment'][$i]['photo_dir'] . '/' . $post['Attachment'][$i]['photo'],
-			array('width' => '100', 'height' => '100'));
+		$imgurl = '/files/attachment/photo/' . $post['Attachment'][$i]['photo_dir'] . '/' . $post['Attachment'][$i]['photo'];
+		echo $this->Html->image($imgurl,
+			array('width' => '100', 'height' => '100', 'class' => 'active'));
 	}
 }
 ?>

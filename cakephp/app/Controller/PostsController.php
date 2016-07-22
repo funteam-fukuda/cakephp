@@ -16,7 +16,7 @@ class PostsController extends AppController {
         $this->paginate = $this->Post->post_pagenate();
         $this->set('posts', $this->paginate());
         // layout off
-        $this->autoLayout = false;
+        // $this->autoLayout = false;
         // search tags
         $this->set('tags', $this->Post->Tag->find('list'));
         // search categories

@@ -34,11 +34,36 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 <body>
 	<div id="container">
 		<div id="header">
-			<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>
+			<!--<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>-->
+
+		<div class="clickArea">search form</div>
+		<div class="searchArea">
+			<?php
+			echo $this->Form->create('Post', array(
+				'novalidate' => true,
+				'url' => array_merge(array('action' => 'search'), $this->params['pass'])
+				));
+			echo $this->Form->input('title', array('div' => false));
+			echo $this->Form->input('Post.category', array(
+				'type' => 'select',
+				'multiple' => 'checkbox',
+				'options' => $categories
+			));
+			echo $this->Form->input('Post.tag', array(
+				'type' => 'select',
+				'multiple' => 'checkbox',
+				'options' => $tags
+			));
+			echo $this->Form->submit('Search');
+			echo $this->Form->end();
+			?>
+		</div>
+			
 		</div>
 		<div id="content">
 
