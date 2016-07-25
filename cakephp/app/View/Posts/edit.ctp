@@ -3,7 +3,6 @@ for ($i=0; $i<count($tag[0]['Tag']); $i++) {
 	$tags[$tag[0]['Tag'][$i]['id']] = $tag[0]['Tag'][$i]['name'];
 }
 ?>
-
 <h1>Edit Post</h1>
 <?php
 echo $this->Form->create('Post', array('type' => 'file'));

@@ -1,4 +1,4 @@
-<?php echo $this->Html->script('searchform.js'); ?>
+<?php echo $this->Html->script('searchform.js?'); ?>
 <?php echo $this->Html->script('slideshow.js'); ?>
 <?php echo $this->Html->css('cake.user'); ?>
 
@@ -37,13 +37,19 @@ Tag:
 <tr><td>
 <?php
 // http://192.168.33.10/cakephp/files/attachment/photo/14/maxresdefault.jpg
+echo '<div class="img">';
 for ($i=0;$i<count($post['Attachment']);$i++) {
 	if ($post['Attachment'][$i]['photo_dir'] != '') {
 		$imgurl = '/files/attachment/photo/' . $post['Attachment'][$i]['photo_dir'] . '/' . $post['Attachment'][$i]['photo'];
-		echo $this->Html->image($imgurl,
-			array('width' => '100', 'height' => '100', 'class' => 'active'));
+		echo $this->Html->link(
+			$this->Html->image($imgurl,
+			array('width' => '100', 'height' => '100')),
+			'#',
+			array('escape' => false, 'data-target' => 'con1', 'id' => $i, 'class' => 'active modal-open', 'onclick' => 'showImage()')
+		);
 	}
 }
+echo '</div>';
 ?>
 </td></tr>
 <tr><td><?php echo $post['Post']['body']; ?></td></tr>

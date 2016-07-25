@@ -37,10 +37,14 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 <body>
+<div id="con1" class="modal-content">
+	<div id="img-block"></div>
+	<p><a class="modal-close">閉じる</a></p>
+</div>
 	<div id="container">
 		<div id="header">
 			<!--<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>-->
-
+		<!--
 		<div class="clickArea">search form</div>
 		<div class="searchArea">
 			<?php
@@ -63,7 +67,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			echo $this->Form->end();
 			?>
 		</div>
-			
+		-->
 		</div>
 		<div id="content">
 

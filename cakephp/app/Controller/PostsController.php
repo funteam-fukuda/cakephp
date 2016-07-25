@@ -4,6 +4,12 @@ class PostsController extends AppController {
     
     public $helpers = array('Html', 'Form', 'Flash');
 
+    // Search
+    public $components = array('Search.Prg');
+    // URLフォーマットやSQLに渡す検索条件を構成する処理？
+    public $presetVars = true;
+
+    public $uses = array('Post', 'Category');
     /*public $paginate = array(
         'Post' => array(
             'limit' => 3,
@@ -41,8 +47,8 @@ class PostsController extends AppController {
         //debug($this->request->data);
         
         // add to categories table
-        $Post = ClassRegistry::init('Category');
-        $this->set('posts', $Post->find('list', array('fields' => 'Category.name')));
+        $this->loadModel('Category');
+        $this->set('posts', $this->Category->find('list', array('fields' => 'Category.name')));
 
         // tag
         $this->set('tag', $this->Post->find('all'));
@@ -72,8 +78,8 @@ class PostsController extends AppController {
         $this->set('uploads', $this->Post->findById($id));
 
         // add to categories table
-        $Cate = ClassRegistry::init('Category');
-        $this->set('posts', $Cate->find('list', array('fields' => 'Category.name')));
+        $this->loadModel('Category');
+        $this->set('posts', $this->Category->find('list', array('fields' => 'Category.name')));
 
         // tag
         $this->set('tag', $this->Post->find('all'));
@@ -124,11 +130,6 @@ class PostsController extends AppController {
 
         return parent::isAuthorized($user);
     }
-
-    // Search
-    public $components = array('Search.Prg');
-    // URLフォーマットやSQLに渡す検索条件を構成する処理？
-    public $presetVars = true;
 
     public function search() {
 
