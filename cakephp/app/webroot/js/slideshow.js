@@ -39,37 +39,52 @@ $(function() {
             $(modal).css({'left': x + 'px','top': y + 'px'});
         }
 
-		var current_id = $(this).attr('id');
+		var current_id = $(this).attr('class');
+        current_id = current_id.match(/([0-9]+)/)[0];
+        // block id
+        var block_id = $(this).parent('div').attr('id');
+        var obj = $('div#' + block_id);
+        var tags = obj.html();
+        console.log(tags);
+        var arr = tags.match(/img src="(.*?)"/g);
+        var img_src = {};
 
-		$('div#img-block').append('<img src="' + itag + '" />');
-		modalResize();
-		modalContentSize();
-		if (current_id == 0) {
-			console.log('next');
-			// prev off
-			// next on
-		} else if(current_id == itag.length) {
-			console.log('prev');
-			// prev on
-			// next off
-		} else {
-			// prev on
-			// next on
-		}
-		
-		function modalContentSize() {
-			var obj = $('div.img');
-			var tags = obj.html();
-			var itag = tags.match(/img src="(.*?)"/)[1];
-			var img = new Image();
-			img.src = convertAbsUrl(itag);
-			$('.modal-content').css('width', img.width);
-			$('.modal-content').css('height', img.height);
-		}
+        for (i=0; i<arr.length; i++) {
+            img_src[i] = arr[i].match(/img src="(.*?)"/)[1];
+        }
 
-		function convertAbsUrl(src){
-    		return $("<a>").attr("href", src).get(0).href;
-		}
+        dispImage();
 
+        function dispImage() {
+            $('div#img-block').empty();
+            $('div#img-block').append('<img src="' + img_src[current_id] + '" />');
+            var img = new Image();
+            img.src = convertAbsUrl(img_src[current_id]);
+            $('.modal-content').css('max-width', img.width);
+            $('.modal-content').css('max-height', img.height);
+            modalResize();
+
+            if (current_id == 0) {
+                $('div#img-block').append('<a id="next_img" href="javascript:void(0)">next</a>');
+            } else if(current_id == arr.length - 1) {
+                $('div#img-block').append('<a id="prev_img" href="javascript:void(0)">prev</a>');
+            } else {
+                $('div#img-block').append('<a id="next_img" href="javascript:void(0)">next</a>');
+                $('div#img-block').append('<a id="prev_img" href="javascript:void(0)">prev</a>');
+            }
+        }
+
+        function convertAbsUrl(src){
+            return $('<a>').attr('href', src).get(0).href;
+        }
+
+        $(document).on('click', '#next_img', function() {
+            current_id ++;
+            dispImage();
+        });
+        $(document).on('click', '#prev_img', function() {
+            current_id --;
+            dispImage();
+        });
 	});
 });

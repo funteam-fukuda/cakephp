@@ -26,7 +26,7 @@ class PostsController extends AppController {
         // search tags
         $this->set('tags', $this->Post->Tag->find('list'));
         // search categories
-        $this->set('categories', $this->Post->Category->find('list'));
+        $this->set('categories', $this->Category->find('list'));
     }
 
     public function view($id = null) {

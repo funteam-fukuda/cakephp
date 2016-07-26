@@ -11,7 +11,7 @@
 <h1><?php echo Configure::read('site_name'); ?></h1>
 <table style="width:800px;">
 <?php foreach ($posts as $post): ?>
-<tr><td class="post-title"><?php echo $post['Post']['title']; ?></td></tr>
+<tr><td class="post-title"><?php echo $this->Html->link($post['Post']['title'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?></td></tr>
 <tr>
 <td>
 <?php echo $post['Post']['created']; ?>
@@ -36,16 +36,15 @@ Tag:
 </tr>
 <tr><td>
 <?php
-// http://192.168.33.10/cakephp/files/attachment/photo/14/maxresdefault.jpg
-echo '<div class="img">';
+echo '<div id="' . $post['Post']['id'] . '">';
 for ($i=0;$i<count($post['Attachment']);$i++) {
 	if ($post['Attachment'][$i]['photo_dir'] != '') {
 		$imgurl = '/files/attachment/photo/' . $post['Attachment'][$i]['photo_dir'] . '/' . $post['Attachment'][$i]['photo'];
 		echo $this->Html->link(
 			$this->Html->image($imgurl,
 			array('width' => '100', 'height' => '100')),
-			'#',
-			array('escape' => false, 'data-target' => 'con1', 'id' => $i, 'class' => 'active modal-open', 'onclick' => 'showImage()')
+			'javascript:void(0)',
+			array('escape' => false, 'data-target' => 'con1', 'class' => "modal-open $i")
 		);
 	}
 }

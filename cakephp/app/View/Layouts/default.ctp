@@ -44,7 +44,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	<div id="container">
 		<div id="header">
 			<!--<h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1>-->
-		<!--
 		<div class="clickArea">search form</div>
 		<div class="searchArea">
 			<?php
@@ -67,7 +66,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 			echo $this->Form->end();
 			?>
 		</div>
-		-->
 		</div>
 		<div id="content">
 
