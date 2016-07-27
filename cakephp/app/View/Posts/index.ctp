@@ -3,6 +3,30 @@
 <?php echo $this->Html->script('zipcode.js'); ?>
 <?php echo $this->Html->css('cake.user'); ?>
 
+<div class="clickArea">search form</div>
+<div class="searchArea">
+	<?php
+	echo $this->Form->create('Post', array(
+		'novalidate' => true,
+		'url' => array_merge(array('action' => 'search'), $this->params['pass'])
+		));
+	echo $this->Form->input('title', array('div' => false));
+	echo $this->Form->input('Post.category', array(
+		'type' => 'select',
+		'multiple' => 'checkbox',
+		'options' => $categories
+	));
+	echo $this->Form->input('Post.tag', array(
+		'type' => 'select',
+		'multiple' => 'checkbox',
+		'options' => $tags
+	));
+	echo $this->Form->submit('Search');
+	echo $this->Form->end();
+	?>
+</div>
+</div>
+
 <?php
 echo $this->Form->create('PostalCode', array(
 	'url' => 'javascript:void(0)'));

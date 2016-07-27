@@ -1,11 +1,11 @@
 $(function() {
 	$('#searchZipCode').click(function() {
 		
-		var data = {'data[PostalCode][zipcode]': $('#PostalCodeRequest').val()};
-		
+		var data = {'data[PostalCode][request]': $('#PostalCodeRequest').val()};
+		console.log(data);
 		$.ajax({
 			type: 'POST',
-			url: 'zipcode',
+			url: 'http://blog.dev/cakephp/posts/zipcode',
 			data: data,
 			success: function(data, dataType) {
 				if (data == "[]") {
