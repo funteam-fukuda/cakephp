@@ -1,7 +1,16 @@
 <?php echo $this->Html->script('searchform.js?'); ?>
 <?php echo $this->Html->script('slideshow.js'); ?>
+<?php echo $this->Html->script('zipcode.js'); ?>
 <?php echo $this->Html->css('cake.user'); ?>
 
+<?php
+echo $this->Form->create('PostalCode', array(
+	'url' => 'javascript:void(0)'));
+echo $this->Form->input('request');
+echo '<div id="result_zipcode"></div>';
+echo $this->Form->submit('Search', array(
+	'id' => 'searchZipCode'));
+?>
 <?php echo $this->Html->link(
 	'Add Post', array('action' => 'add')); ?>
 

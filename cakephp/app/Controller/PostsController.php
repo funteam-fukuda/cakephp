@@ -9,13 +9,7 @@ class PostsController extends AppController {
     // URLフォーマットやSQLに渡す検索条件を構成する処理？
     public $presetVars = true;
 
-    public $uses = array('Post', 'Category');
-    /*public $paginate = array(
-        'Post' => array(
-            'limit' => 3,
-            'order' => array('id' => 'asc')
-        )
-    );*/
+    public $uses = array('Post', 'Category', 'PostalCode');
 
     public function index() {
         $this->set('posts', $this->Post->find('all'));
@@ -42,9 +36,6 @@ class PostsController extends AppController {
     }
 
     public function add() {
-        
-        // debug
-        //debug($this->request->data);
         
         // add to categories table
         $this->loadModel('Category');
@@ -146,5 +137,17 @@ class PostsController extends AppController {
             ))
         );
         #$this->set('tags', $this->Post->Tag->find('list'));
+    }
+
+    public function zipcode() {
+        $this->autoLayout = false;
+        if ($this->request->is('post')) {
+            $this->set('data', $this->PostalCode->find('all', array(
+                'conditions' => array(
+                    'zipcode' => $this->request->data['PostalCode']
+                )
+            ))
+        );
+        }
     }
 }
