@@ -65,7 +65,9 @@ $(function() {
             modalResize();
 
             if (current_id == 0) {
-                $('div#img-block').append('<a id="next_img" href="javascript:void(0)">next</a>');
+                if (arr.length > 1) {
+                    $('div#img-block').append('<a id="next_img" href="javascript:void(0)">next</a>');
+                }
             } else if(current_id == arr.length - 1) {
                 $('div#img-block').append('<a id="prev_img" href="javascript:void(0)">prev</a>');
             } else {
