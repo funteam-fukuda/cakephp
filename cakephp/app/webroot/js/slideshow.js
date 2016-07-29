@@ -39,7 +39,7 @@ $(function() {
             $(modal).css({'left': x + 'px','top': y + 'px'});
         }
 
-		var current_id = $(this).attr('class');
+    var current_id = $(this).attr('class');
         current_id = current_id.match(/([0-9]+)/)[0];
         // block id
         var block_id = $(this).parent('div').attr('id');
@@ -49,7 +49,7 @@ $(function() {
         var arr = tags.match(/img src="(.*?)"/g);
         var img_src = {};
 
-        for (i=0; i<arr.length; i++) {
+        for (i = 0; i < arr.length; i++) {
             img_src[i] = arr[i].match(/img src="(.*?)"/)[1];
         }
 
@@ -88,5 +88,5 @@ $(function() {
             current_id --;
             dispImage();
         });
-	});
+  });
 });

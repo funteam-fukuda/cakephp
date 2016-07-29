@@ -9,10 +9,9 @@ class PostsController extends AppController {
     // URLフォーマットやSQLに渡す検索条件を構成する処理？
     public $presetVars = true;
 
-    public $uses = array('Post', 'Category', 'PostalCode');
+    public $uses = array('Post', 'Category', 'PostalCode', 'Attachment');
 
     public function index() {
-        $this->set('posts', $this->Post->find('all'));
         $this->paginate = $this->Post->post_pagenate();
         $this->set('posts', $this->paginate());
         // layout off
@@ -49,7 +48,7 @@ class PostsController extends AppController {
     		#$this->Post->create();
     		if ($this->Post->saveAll($this->request->data)) {
     			$this->Flash->success(__('Your post has been saved.'));
-    			#return $this->redirect(array('action' => 'index'));
+    			return $this->redirect(array('action' => 'index'));
     		}
     		$this->Flash->error(__('Unable to add your post.'));
     	}
@@ -77,7 +76,7 @@ class PostsController extends AppController {
 
     	if ($this->request->is(array('post', 'put'))) {
     		$this->Post->id = $id;
-    		if ($this->Post->save($this->request->data)) {
+    		if ($this->Post->saveAll($this->request->data)) {
     			$this->Flash->success(__('your post has been updated.'));
     			return $this->redirect(array('action' => 'index'));
     		}
@@ -101,6 +100,18 @@ class PostsController extends AppController {
 	    }
 
 	    return $this->redirect(array('action' => 'index'));
+    }
+
+    public function delete_image($id) {
+        if ($this->request->is('get')) {
+            throw new MethodNotAllowedException();
+        }
+
+        if ($this->Attachment->delete($id)) {
+            $this->Flash->success(__('delete image!'));
+        } else {
+            $this->Flash->error(__('error'));
+        }
     }
 
     public function isAuthorized($user) {
@@ -140,14 +151,17 @@ class PostsController extends AppController {
     }
 
     public function zipcode() {
-        $this->autoLayout = false;
-        if ($this->request->is('post')) {
-            $this->set('data', $this->PostalCode->find('all', array(
-                'conditions' => array(
-                    'zipcode' => $this->request->data['PostalCode']
-                )
-            ))
-        );
+        $this->autoRender = false;
+        if (!$this->request->is('ajax')) {
+            throw new BadRequestException();            
         }
+
+        $result = $this->PostalCode->find('all', array(
+            'conditions' => array(
+                'zipcode' => $this->request->data['PostalCode']
+                )
+            )   
+        );
+        return json_encode($result);
     }
 }

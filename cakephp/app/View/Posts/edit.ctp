@@ -1,3 +1,4 @@
+<?php echo $this->Html->script('addformdata.js'); ?>
 <?php
 for ($i=0; $i<count($tag[0]['Tag']); $i++) {
 	$tags[$tag[0]['Tag'][$i]['id']] = $tag[0]['Tag'][$i]['name'];
@@ -17,10 +18,19 @@ echo $this->Form->input('Tag', array(
 	'multiple' => 'checkbox',
 	'options' => $tags
 	));
-/*for ($i=0;$i<3;$i++) {
-	echo $uploads['Attachment'][$i]['photo'];
-	echo $this->Form->input('Attachment.' . $i . '.photo', array('type' => 'file', 'default' => $uploads['Attachment'][$i]['photo']));
-	echo $this->Form->input('Attachment.' . $i . '.photo_dir', array('type' => 'hidden', 'default' => $uploads['Attachment'][$i]['photo_dir']));
-}*/
+
+echo $this->Html->link('＋', 'javascript:void(0)', array(
+	'id' => 'addFormData'));
+
+for ($i=0; $i<$item = count($uploads['Attachment']); $i++) {
+	if ($uploads['Attachment'][$i]['photo_dir'] != '') {
+		$imgurl = '/files/attachment/photo/' . $uploads['Attachment'][$i]['photo_dir'] . '/' . $uploads['Attachment'][$i]['photo'];
+
+		echo $this->Html->image($imgurl,
+			array('width' => '100', 'height' => '100', 'class' => 'dlt'));
+	}
+}
+echo '<div class="file"><div><input type="file" name="data[Attachment][0][photo]" id="Attachment0Photo"></div></div>';
+
 echo $this->Form->end('Save Post');
 ?>

@@ -1,7 +1,6 @@
-<?php echo $this->Html->script('searchform.js?'); ?>
+<?php echo $this->Html->script('searchform.js'); ?>
 <?php echo $this->Html->script('slideshow.js'); ?>
 <?php echo $this->Html->script('zipcode.js'); ?>
-<?php echo $this->Html->css('cake.user'); ?>
 
 <div class="clickArea">search form</div>
 <div class="searchArea">
@@ -25,7 +24,6 @@
 	echo $this->Form->end();
 	?>
 </div>
-</div>
 
 <?php
 echo $this->Form->create('PostalCode', array(
@@ -41,54 +39,45 @@ echo $this->Form->submit('Search', array(
 <?php echo $this->Html->link(
 	'Logout', array('controller' => 'users', 'action' => 'logout')); ?>
 
-<h1><?php echo Configure::read('site_name'); ?></h1>
-<table style="width:800px;">
 <?php foreach ($posts as $post): ?>
-<tr><td class="post-title"><?php echo $this->Html->link($post['Post']['title'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?></td></tr>
-<tr>
-<td>
+<h2 class="post-title"><?php echo $this->Html->link($post['Post']['title'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?></h2>
 <?php echo $post['Post']['created']; ?>
  by <?php echo $post['User']['username']; ?> 
 <?php echo $this->Html->link('Edit', array('action' => 'edit', $post['Post']['id'])); ?>, 
 <?php echo $this->Form->postLink('Delete',
 								 array('action' => 'delete', $post['Post']['id']),
 								 array('confirm' => 'Are you sure?')); ?>
-</td>
-<tr>
-<td>
 Category: <?php echo $post['Category']['name']; ?>
-</td>
-</tr>
-<tr>
-<td>
 Tag: 
 <?php foreach ($post['Tag'] as $tag): ?>
 <?php echo $tag['name']; ?>, 
 <?php endforeach; ?>
-</td>
-</tr>
-<tr><td>
+
 <?php
 echo '<div id="' . $post['Post']['id'] . '">';
-for ($i=0;$i<count($post['Attachment']);$i++) {
-	if ($post['Attachment'][$i]['photo_dir'] != '') {
-		$imgurl = '/files/attachment/photo/' . $post['Attachment'][$i]['photo_dir'] . '/' . $post['Attachment'][$i]['photo'];
+$cnt = 0;
+foreach ($post['Attachment'] as $value) {
+	if ($value['photo_dir'] != '') {
+		$imgurl = '/files/attachment/photo/' . $value['photo_dir'] . '/' . $value['photo'];
 		echo $this->Html->link(
 			$this->Html->image($imgurl,
 			array('width' => '100', 'height' => '100')),
 			'javascript:void(0)',
-			array('escape' => false, 'data-target' => 'con1', 'class' => "modal-open $i")
+			array('escape' => false, 'data-target' => 'con1', 'class' => "modal-open $cnt")
 		);
+		$cnt++;
 	}
 }
 echo '</div>';
 ?>
-</td></tr>
-<tr><td><?php echo $post['Post']['body']; ?></td></tr>
-</tr>
-<?php endforeach; ?>
-</table>
+<?php echo $post['Post']['body']; ?>
 
+<?php endforeach; ?>
+
+<div class="pagination pagination-centered">
+<ul>
 <?php echo $this->Paginator->prev('< prev', array(), null, array('class' => 'prev disabled')); ?>
 <?php echo $this->Paginator->numbers(array('separator' => '')); ?>
 <?php echo $this->Paginator->next('next >', array(), null, array('class' => 'next disabled')); ?>
+</ul>
+</div><!-- end pagination -->
