@@ -25,7 +25,7 @@ echo $this->Html->link('＋', 'javascript:void(0)', array(
 
 echo '<div class="file"><div><input type="file" name="data[Attachment][0][photo]" id="Attachment0Photo"></div></div>';
 
-echo $this->Form->end('Save Post');
+echo $this->Form->end(array('name' => 'Save Post', 'class' => 'btn'));
 
 echo '<div class="editimg">';
 for ($i=0; $i<$item = count($uploads['Attachment']); $i++) {

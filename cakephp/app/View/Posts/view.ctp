@@ -1,7 +1,3 @@
-<?php echo $this->Html->script('searchform.js?'); ?>
-<?php echo $this->Html->script('slideshow.js'); ?>
-<?php echo $this->Html->css('cake.user'); ?>
-
 <table class="table table-striped table-bordered">
 <tr>
 <th>id</th>

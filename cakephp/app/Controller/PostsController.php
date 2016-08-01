@@ -16,10 +16,6 @@ class PostsController extends AppController {
         $this->set('posts', $this->paginate());
         // layout off
         // $this->autoLayout = false;
-        // search tags
-        $this->set('tags', $this->Post->Tag->find('list'));
-        // search categories
-        $this->set('categories', $this->Category->find('list'));
     }
 
     public function view($id = null) {

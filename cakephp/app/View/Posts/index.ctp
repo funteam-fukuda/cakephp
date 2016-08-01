@@ -1,36 +1,10 @@
-<?php echo $this->Html->script('searchform.js'); ?>
-<?php echo $this->Html->script('slideshow.js'); ?>
 <?php echo $this->Html->script('zipcode.js'); ?>
-
-<div class="clickArea">search form</div>
-<div class="searchArea">
-	<?php
-	echo $this->Form->create('Post', array(
-		'novalidate' => true,
-		'url' => array_merge(array('action' => 'search'), $this->params['pass'])
-		));
-	echo $this->Form->input('title', array('div' => false));
-	echo $this->Form->input('Post.category', array(
-		'type' => 'select',
-		'multiple' => 'checkbox',
-		'options' => $categories
-	));
-	echo $this->Form->input('Post.tag', array(
-		'type' => 'select',
-		'multiple' => 'checkbox',
-		'options' => $tags
-	));
-	echo $this->Form->submit('Search', array(
-		'class' => 'btn'));
-	echo $this->Form->end();
-	?>
-</div>
 
 <?php
 echo $this->Form->create('PostalCode', array(
 	'url' => 'javascript:void(0)'));
 echo $this->Form->input('request', array(
-	'label' => false));
+	'label' => 'PostalCodeSearch'));
 
 echo $this->Form->input('result', array(
 	'type' => 'select',

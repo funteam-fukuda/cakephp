@@ -64,8 +64,14 @@ class AppController extends Controller {
 		)
 	);
 
+	public $uses = array('Post', 'Category');
+
 	public function beforeFilter() {
 		$this->Auth->allow('index', 'view');
+        // search tags
+        $this->set('tags', $this->Post->Tag->find('list'));
+        // search categories
+        $this->set('categories', $this->Category->find('list'));
 	}
 
 	public function isAuthorized($user) {

@@ -1,7 +1,4 @@
-<?php echo $this->Html->css('cake.user'); ?>
-
-<h1><?php echo Configure::read('site_name'); ?></h1>
-<table>
+<table class="table table-striped table-bordered">
 <tr>
 <th>id</th>
 <th>title</th>
@@ -15,7 +12,8 @@
 <?php echo $post['Post']['id']; ?>
 </td>
 <td>
-<?php echo $post['Post']['title']; ?>
+<?php echo $this->Html->link($post['Post']['title'], array(
+	'controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?>
 </td>
 <td>
 <?php echo $post['Category']['name']; ?>
