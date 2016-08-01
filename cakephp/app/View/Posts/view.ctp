@@ -1,18 +1,18 @@
 <?php echo $this->Html->script('searchform.js?'); ?>
 <?php echo $this->Html->script('slideshow.js'); ?>
 <?php echo $this->Html->css('cake.user'); ?>
-<table>
+
+<table class="table table-striped table-bordered">
 <tr>
 <th>id</th>
 <th>title</th>
 <th>body</th>
 </tr>
-
-<tr>
 <td><?php echo $post['Post']['id']; ?></td>
 <td><?php echo $post['Post']['title']; ?></td>
-<td><?php echo $post['Post']['body']; ?></td>
 <td>
+<?php echo $post['Post']['body']; ?>
+
 <?php
 echo '<div id="' . $post['Post']['id'] . '">';
 $cnt = 0;
@@ -31,6 +31,4 @@ foreach ($post['Attachment'] as $value) {
 echo '</div>';
 ?>
 </td>
-</tr>
-
 </table>

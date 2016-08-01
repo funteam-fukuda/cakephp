@@ -112,6 +112,8 @@ class PostsController extends AppController {
         } else {
             $this->Flash->error(__('error'));
         }
+
+        return $this->redirect($this->referer());
     }
 
     public function isAuthorized($user) {

@@ -1,5 +1,6 @@
 <?php echo $this->Html->script('addformdata.js'); ?>
 <?php
+echo '<div id="editwrap">';
 for ($i=0; $i<count($tag[0]['Tag']); $i++) {
 	$tags[$tag[0]['Tag'][$i]['id']] = $tag[0]['Tag'][$i]['name'];
 }
@@ -22,15 +23,22 @@ echo $this->Form->input('Tag', array(
 echo $this->Html->link('＋', 'javascript:void(0)', array(
 	'id' => 'addFormData'));
 
+echo '<div class="file"><div><input type="file" name="data[Attachment][0][photo]" id="Attachment0Photo"></div></div>';
+
+echo $this->Form->end('Save Post');
+
+echo '<div class="editimg">';
 for ($i=0; $i<$item = count($uploads['Attachment']); $i++) {
 	if ($uploads['Attachment'][$i]['photo_dir'] != '') {
 		$imgurl = '/files/attachment/photo/' . $uploads['Attachment'][$i]['photo_dir'] . '/' . $uploads['Attachment'][$i]['photo'];
 
-		echo $this->Html->image($imgurl,
-			array('width' => '100', 'height' => '100', 'class' => 'dlt'));
+		echo $this->Form->postLink(
+		$this->Html->image($imgurl,
+			array('width' => '100', 'height' => '100', 'class' => 'dlt')),
+		array('action' => 'delete_image', $uploads['Attachment'][$i]['photo_dir']),
+		array('confirm' => 'delete it?', 'escape' => false));
 	}
 }
-echo '<div class="file"><div><input type="file" name="data[Attachment][0][photo]" id="Attachment0Photo"></div></div>';
-
-echo $this->Form->end('Save Post');
+echo '</div><!-- editimg-->';
+echo '</div><!-- editwrap-->';
 ?>

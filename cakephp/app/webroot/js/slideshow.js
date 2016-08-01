@@ -81,11 +81,11 @@ $(function() {
         }
 
         $(document).on('click', '#next_img', function() {
-            current_id ++;
+            current_id++;
             dispImage();
         });
         $(document).on('click', '#prev_img', function() {
-            current_id --;
+            current_id--;
             dispImage();
         });
   });

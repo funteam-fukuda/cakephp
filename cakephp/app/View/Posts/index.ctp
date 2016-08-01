@@ -20,7 +20,8 @@
 		'multiple' => 'checkbox',
 		'options' => $tags
 	));
-	echo $this->Form->submit('Search');
+	echo $this->Form->submit('Search', array(
+		'class' => 'btn'));
 	echo $this->Form->end();
 	?>
 </div>
@@ -28,10 +29,17 @@
 <?php
 echo $this->Form->create('PostalCode', array(
 	'url' => 'javascript:void(0)'));
-echo $this->Form->input('request');
-echo '<div id="result_zipcode"></div>';
+echo $this->Form->input('request', array(
+	'label' => false));
+
+echo $this->Form->input('result', array(
+	'type' => 'select',
+	'id' => 'result_zipcode',
+	'label' => false));
+
 echo $this->Form->submit('Search', array(
-	'id' => 'searchZipCode'));
+	'id' => 'searchZipCode', 'class' => 'btn'));
+echo $this->Form->end();
 ?>
 <?php echo $this->Html->link(
 	'Add Post', array('action' => 'add')); ?>
