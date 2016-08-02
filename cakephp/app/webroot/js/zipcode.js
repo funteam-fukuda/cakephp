@@ -42,7 +42,7 @@ $(function() {
 
 function gen_address(json) {
   $.each(json, function(index, elem) {
-    elem.PostalCode.street.replace('以下に掲載がない場合', '');
+    elem.PostalCode.street = elem.PostalCode.street.replace('以下に掲載がない場合', '');
     var address = elem.PostalCode.state + elem.PostalCode.city + elem.PostalCode.street;
     $('#result_zipcode').append('<option value="' + index + '">' + address + '</option>');
   });

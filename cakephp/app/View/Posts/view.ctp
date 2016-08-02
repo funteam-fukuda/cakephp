@@ -1,15 +1,17 @@
-<table class="table table-striped table-bordered">
-<tr>
-<th>id</th>
-<th>title</th>
-<th>body</th>
-</tr>
-<td><?php echo $post['Post']['id']; ?></td>
-<td><?php echo $post['Post']['title']; ?></td>
-<td>
-<?php echo $post['Post']['body']; ?>
-
+<h2><?php echo $post['Post']['title']; ?></h2>
+<div class="well">
 <?php
+
+echo '<div class="view_cate">Category: ' . $post['Category']['name'] . '</div>';
+
+echo '<div class="view_tag">Tag: ';
+foreach ($post['Tag'] as $value) {
+	echo $value['name'] . ',';
+}
+echo '</div>';
+
+echo $post['Post']['body'];
+
 echo '<div id="' . $post['Post']['id'] . '">';
 $cnt = 0;
 foreach ($post['Attachment'] as $value) {
@@ -26,5 +28,4 @@ foreach ($post['Attachment'] as $value) {
 }
 echo '</div>';
 ?>
-</td>
-</table>
+</div><!-- well -->

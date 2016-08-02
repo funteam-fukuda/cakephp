@@ -10,7 +10,7 @@ class CategoriesController extends AppController {
 		$this->set('categories', $this->Paginator->paginate());
 
 		if ($this->request->is('post')) {
-			$result = $this->Category->find('list', array(
+			$result = $this->Category->find('first', array(
 				'conditions' => array('name' => $this->request->data['Category']['name'])));
 			if (empty($result)) {
 				if ($this->Category->save($this->request->data)) {
@@ -26,7 +26,7 @@ class CategoriesController extends AppController {
 
 	public function add() {
 		if ($this->request->is('post')) {
-			$result = $this->Category->find('list', array(
+			$result = $this->Category->find('first', array(
 				'conditions' => array('name' => $this->request->data['Category']['name'])));
 			if (empty($result)) {
 				if ($this->Category->save($this->request->data)) {
@@ -45,7 +45,7 @@ class CategoriesController extends AppController {
 		if ($this->request->is('get')) {
 			throw new MethodNotAllowedException();			
 		}
-		$result = $this->Category->Post->find('all', array(
+		$result = $this->Category->Post->find('first', array(
 			'conditions' => array('category_id' => $id)));
 		if (empty($result)) {
 			if ($this->request->delete($id)) {

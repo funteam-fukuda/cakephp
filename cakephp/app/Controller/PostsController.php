@@ -17,7 +17,7 @@ class PostsController extends AppController {
     }
 
     public function index() {
-        //debug($this->Auth->user('id'));
+        debug($this->Auth->user('id'));
         $this->paginate = $this->Post->post_pagenate();
         $this->set('posts', $this->paginate());
         // layout off
@@ -67,7 +67,10 @@ class PostsController extends AppController {
     	if (!$post) {
     		throw new NotFoundException(__('Invalid post' . __line__ . 'line..'));
     	}
-
+        // author以外の場合、記事の編集を拒否する(adminが編集できない)
+        /*if ($this->Auth->user('id') != $this->Post->findById($id)['Post']['user_id']) {
+            return $this->redirect(array('action' => 'index'));
+        }*/
         // upload
         $this->set('uploads', $this->Post->findById($id));
 
@@ -96,7 +99,10 @@ class PostsController extends AppController {
     	if ($this->request->is('get')) {
     		throw new MethodNotAllowedException();
     	}
-    	
+        // author以外の場合、記事の編集を拒否する(adminが編集できない)
+        /*if ($this->Auth->user('id') != $this->Post->findById($id)['Post']['user_id']) {
+            return $this->redirect(array('action' => 'index'));
+        }*/
     	if ($this->Post->delete($id)) {
     		$this->Flash->success(__('The post with id: %s has been deleted.', h($id)));
     	} else {
@@ -120,7 +126,7 @@ class PostsController extends AppController {
         return $this->redirect($this->referer());
     }
 
-    public function isAuthorized($user) {
+    /*public function isAuthorized($user) {
         
         // index.ctpからaddに遷移した際
         if ($this->action == 'add') {
@@ -137,7 +143,7 @@ class PostsController extends AppController {
         }
 
         return parent::isAuthorized($user);
-    }
+    }*/
 
     public function search() {
 

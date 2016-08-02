@@ -10,7 +10,7 @@ class TagsController extends AppController {
 		$this->set('tags', $this->Paginator->paginate());
 
 		if ($this->request->is('post')) {
-			$result = $this->Tag->find('list', array(
+			$result = $this->Tag->find('first', array(
 				'conditions' => array('name' => $this->request->data['Tag']['name'])));
 			if (empty($result)) {
 				if ($this->Tag->save($this->request->data)) {
@@ -28,7 +28,7 @@ class TagsController extends AppController {
 		if ($this->request->is('get')) {
 			throw new MethodNotAllowedException();
 		}
-		$result = $this->Tag->PostsTag->find('list', array(
+		$result = $this->Tag->PostsTag->find('first', array(
 			'conditions' => array('tag_id' => $id)));
 		if (empty($result)) {
 			$this->Tag->delete($id);
@@ -39,5 +39,23 @@ class TagsController extends AppController {
 		}
 	}
 
-	public function add()
+	public function add() {
+		if ($this->request->is('get')) {
+			throw new MethodNotAllowedException();
+		}
+		if ($this->request->is('post')) {
+			$result = $this->Tag->find('first', array(
+				'conditions' => array('name' => $this->request->data['Tag']['name'])));
+			if (empty($result)) {
+				if ($this->Tag->save($this->request->data)) {
+					$this->Flash->success(__('success!'));
+					return $this->redirect(array('action' => 'index'));
+				}
+				$this->Flash->error(__('error' . __line__ . 'line..'));
+			} else {
+				$this->Flash->error(__('このタグは既に存在しています'));
+				$this->redirect(array('action' => 'index'));
+			}
+		}
+	}
 }
