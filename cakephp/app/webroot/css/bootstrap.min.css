@@ -101,3 +101,7 @@ form#PostalCodeIndexForm {
 	padding: 10px;
 	margin: 10px 0;
 }
+
+form#CategoryIndexForm {
+	margin: 0;
+}

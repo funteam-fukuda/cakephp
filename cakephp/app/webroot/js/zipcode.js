@@ -6,13 +6,11 @@ $(function() {
     if (val == '') {
       alert('郵便番号を入力して下さい');
       return;
-    } else if (!val.match(/^\d{3}-\d{4}$|^\d{7}$/)) {
+    } else if (!val.match(/^\d{3}-?\d{4}$/)) {
       alert('入力形式が不正です');
       return;
     }
-    if (val.match(/^\d{3}-\d{4}$/)) {
-      val = val.replace('-', '');
-    }
+    val = val.replace('-', '');
 
     var data = {'data[PostalCode][request]': val};
 
@@ -44,9 +42,7 @@ $(function() {
 
 function gen_address(json) {
   $.each(json, function(index, elem) {
-    if (elem.PostalCode.street == '以下に掲載がない場合') {
-      elem.PostalCode.street = '';
-    }
+    elem.PostalCode.street.replace('以下に掲載がない場合', '');
     var address = elem.PostalCode.state + elem.PostalCode.city + elem.PostalCode.street;
     $('#result_zipcode').append('<option value="' + index + '">' + address + '</option>');
   });

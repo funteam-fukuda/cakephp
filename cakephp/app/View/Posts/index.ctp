@@ -15,20 +15,26 @@ echo $this->Form->submit('Search', array(
 	'id' => 'searchZipCode', 'class' => 'btn'));
 echo $this->Form->end();
 ?>
-<?php echo $this->Html->link(
-	'Add Post', array('action' => 'add')); ?>
-
-<?php echo $this->Html->link(
-	'Logout', array('controller' => 'users', 'action' => 'logout')); ?>
-
+<?php
+echo $this->Html->link(
+	'Add Post', array('action' => 'add'));
+echo ' | ';
+echo $this->Html->link(
+	'Login', array('controller' => 'users', 'action' => 'login'));
+echo ' | ';
+echo $this->Html->link(
+	'Logout', array('controller' => 'users', 'action' => 'logout'));
+?>
 <?php foreach ($posts as $post): ?>
 <h2 class="post-title"><?php echo $this->Html->link($post['Post']['title'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?></h2>
 <?php echo $post['Post']['created']; ?>
  by <?php echo $post['User']['username']; ?> 
+<?php if (!is_null($login)): ?>
 <?php echo $this->Html->link('Edit', array('action' => 'edit', $post['Post']['id'])); ?>, 
 <?php echo $this->Form->postLink('Delete',
 								 array('action' => 'delete', $post['Post']['id']),
 								 array('confirm' => 'Are you sure?')); ?>
+<?php endif; ?>
 Category: <?php echo $post['Category']['name']; ?>
 Tag: 
 <?php foreach ($post['Tag'] as $tag): ?>

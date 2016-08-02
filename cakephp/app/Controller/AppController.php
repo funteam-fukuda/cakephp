@@ -45,29 +45,41 @@ class AppController extends Controller {
 		array(
 		'DebugKit.Toolbar',
 		'Flash',
+		'Acl',
 		'Auth' => array(
-			'loginRedirect' => array(
-				'controller' => 'posts',
-				'action' => 'index'
-			),
-			'logoutRedirect' => array(
-				'controller' => 'pages',
-				'action' => 'display',
-				'home'
-			),
 			'authenticate' => array(
 				'Form' => array(
 					'passwordHasher' => 'Blowfish'
 				)
 			),
-			'authorize' => array('Controller')
-		)
+			'authorize' => array(
+				'Actions' => array('actionPath' => 'controllers')
+			)
+		),
+		'Session'
 	);
 
 	public $uses = array('Post', 'Category');
 
 	public function beforeFilter() {
-		$this->Auth->allow('index', 'view');
+		
+		$this->Auth->allow('display');
+
+		// ログインページのパス
+		$this->Auth->loginAction = array(
+			'controller' => 'users',
+			'action' => 'login'
+		);
+		// ログアウト後のリダイレクト先
+		$this->Auth->logoutRedirect = array(
+			'controller' => 'users',
+			'action' => 'login'
+		);
+		// ログイン後のリダイレクト先
+		$this->Auth->loginRedirect = array(
+			'controller' => 'posts',
+			'action' => 'add'
+		);
         // search tags
         $this->set('tags', $this->Post->Tag->find('list'));
         // search categories

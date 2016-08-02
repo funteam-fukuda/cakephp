@@ -11,21 +11,29 @@ class PostsController extends AppController {
 
     public $uses = array('Post', 'Category', 'PostalCode', 'Attachment');
 
+    public function beforeFilter() {
+        parent::beforeFilter();
+        $this->Auth->allow('index', 'view');
+    }
+
     public function index() {
+        //debug($this->Auth->user('id'));
         $this->paginate = $this->Post->post_pagenate();
         $this->set('posts', $this->paginate());
         // layout off
         // $this->autoLayout = false;
+        $login = $this->Auth->user();
+        $this->set('login', $login);
     }
 
     public function view($id = null) {
     	if (!$id) {
-    		throw new NotFoundException(__('Invalid post'));
+    		throw new NotFoundException(__('Invalid post' . __line__ . 'line..'));
     	}
 
     	$post = $this->Post->findById($id);
     	if (!$post) {
-    		throw new NotFoundException(__('Invalid post'));
+    		throw new NotFoundException(__('Invalid post' . __line__ . 'line..'));
     	}
     	$this->set('post', $post);
     }
@@ -52,12 +60,12 @@ class PostsController extends AppController {
 
     public function edit($id = null) {
     	if (!$id) {
-    		throw new NotFoundException(__('Invalid post'));
+    		throw new NotFoundException(__('Invalid post' . __line__ . 'line..'));
     	}
 
     	$post = $this->Post->findById($id);
     	if (!$post) {
-    		throw new NotFoundException(__('Invalid post'));
+    		throw new NotFoundException(__('Invalid post' . __line__ . 'line..'));
     	}
 
         // upload
