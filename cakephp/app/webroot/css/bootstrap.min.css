@@ -97,11 +97,96 @@ form#PostSearchForm div.checkbox {
 }
 
 form#PostalCodeIndexForm {
-	border: 1px solid #ccc;
 	padding: 10px;
 	margin: 10px 0;
 }
 
 form#CategoryIndexForm {
 	margin: 0;
+}
+
+div.view_cate {
+	margin-bottom: 10px;
+}
+
+.page-main {
+	position: relative;
+}
+
+.page-main > aside {
+	position: fixed;
+	top: 100px;
+	left: -350px;
+	height: 200px;
+	width: 350px;
+	background: #58BE89;
+}
+
+.page-main > aside button {
+	background: #58BE89;
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 350px;
+	width: 52px;
+	height: 132px;
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none;
+}
+
+.page-main > aside > #sidebar_contents {
+	color: #fff;
+	margin: 20px 0 0 95px;
+}
+
+div.postwrap {
+	padding-bottom: 20px;
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 20px;
+}
+
+div.index-img {
+	padding: 3px;
+	margin: 3px 0;
+}
+
+img.img_prev {
+	position: absolute;
+	top: 40%;
+	left: -20px;
+}
+
+img.img_next {
+	position: absolute;
+	top: 40%;
+	right: -20px;
+}
+
+div#wrap_container {
+	position: relative;
+}
+
+div#main-content {
+	width: 850px;
+}
+
+div#sidemenu {
+	position: absolute;
+	top: 20px;
+	right: 0;
+	padding: 10px;
+	padding-bottom: 20px;
+	width: 300px;
+	background: #fbfbfb;
+}
+
+div#search_notfound {
+	border: 1px solid #ccc;
+	padding: 10px;
+}
+
+div#view_body {
+	margin: 20px 0;
 }

@@ -36,19 +36,23 @@
 	echo $this->fetch('meta');
 	echo $this->fetch('css');
 	?>
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<?php echo $this->Html->script('searchform.js'); ?>
-<?php echo $this->Html->script('slideshow.js'); ?>
 </head>
 
 <body>
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<?php echo $this->Html->script('searchform.js'); ?>
+<?php echo $this->Html->script('slideshow.js'); ?>
+<?php echo $this->Html->script('sidebar.js'); ?>
+
 <div id="con1" class="modal-content">
 	<div id="img-block"></div>
-	<p><a class="modal-close">閉じる</a></p>
+	<p><a class="modal-close"></a></p>
 </div>
 
 	<div class="navbar navbar-fixed-top">
-		<div class="navbar-inner">
+		<div class="well">
 			<div class="container">
 
 				<?php echo $this->element('header'); ?>
@@ -57,10 +61,12 @@
 		</div>
 	</div>
 
-	<div class="container">
+	<div class="container" id="wrap_container">
 
-		<div class="row">
+		<div class="row" id="main-content">
 
+			<?php echo $this->element('sidebar'); ?>
+			
 			<h1><?php echo Configure::read('site_name'); ?></h1>
 
 			<?php echo $this->Session->flash(); ?>
@@ -70,10 +76,12 @@
 			</div><!-- end col-lg-8 -->
 			
 			<div class="col-md-4">
-				<?php echo $this->element('sidebar'); ?>
+				
 			</div><!-- end col-lg-4 -->
 
 		</div><!-- end row -->
+
+		<?php echo $this->element('sidemenu'); ?>
 
 	</div> <!-- /container -->
 
@@ -83,5 +91,6 @@
 	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>-->
 	<?php echo $this->Html->script('bootstrap.min'); ?>
 	<?php echo $this->fetch('script'); ?>
+	<!--<?php echo $this->element('sql_dump'); ?>-->
 </body>
 </html>

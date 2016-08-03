@@ -17,7 +17,9 @@ class PostsController extends AppController {
     }
 
     public function index() {
-        debug($this->Auth->user('id'));
+        // disp login user
+        debug($this->Auth->user('username'));
+        
         $this->paginate = $this->Post->post_pagenate();
         $this->set('posts', $this->paginate());
         // layout off
@@ -67,10 +69,12 @@ class PostsController extends AppController {
     	if (!$post) {
     		throw new NotFoundException(__('Invalid post' . __line__ . 'line..'));
     	}
-        // author以外の場合、記事の編集を拒否する(adminが編集できない)
-        /*if ($this->Auth->user('id') != $this->Post->findById($id)['Post']['user_id']) {
-            return $this->redirect(array('action' => 'index'));
-        }*/
+        // adminと投稿者のみedit許可
+        if ($this->Auth->user('Group')['name'] != 'administrators') {
+            if ($this->Auth->user('id') != $this->Post->findById($id)['Post']['user_id']) {
+                return $this->redirect(array('action' => 'index'));
+            }
+        }
         // upload
         $this->set('uploads', $this->Post->findById($id));
 
@@ -99,10 +103,12 @@ class PostsController extends AppController {
     	if ($this->request->is('get')) {
     		throw new MethodNotAllowedException();
     	}
-        // author以外の場合、記事の編集を拒否する(adminが編集できない)
-        /*if ($this->Auth->user('id') != $this->Post->findById($id)['Post']['user_id']) {
-            return $this->redirect(array('action' => 'index'));
-        }*/
+        // adminと投稿者のみedit許可
+        if ($this->Auth->user('Group')['name'] != 'administrators') {
+            if ($this->Auth->user('id') != $this->Post->findById($id)['Post']['user_id']) {
+                return $this->redirect(array('action' => 'index'));
+            }
+        }
     	if ($this->Post->delete($id)) {
     		$this->Flash->success(__('The post with id: %s has been deleted.', h($id)));
     	} else {
@@ -155,11 +161,13 @@ class PostsController extends AppController {
 
         // parsedParamsをparseCriteria()に渡すことで、ModelのfilterArgsの定義に従ってwhere条件が構成され、検索が行われる
         $conditions = $this->Post->parseCriteria($this->Prg->parsedParams());
-        $this->set('posts', $this->paginate(array(
-            $conditions
-            ))
-        );
-        #$this->set('tags', $this->Post->Tag->find('list'));
+
+        if (!empty($conditions)) {
+            $this->set('posts', $this->paginate(array(
+                $conditions
+                ))
+            );
+        }
     }
 
     public function zipcode() {

@@ -86,7 +86,7 @@ class Post extends AppModel	{
 	// method: "expression", "subquery", "query"では必須
 	// type: value(int)=完全一致, like(string)=部分一致
 	public $filterArgs = array(
-		array('name' => 'title', 'type' => 'like'),
+		array('name' => 'title', 'type' => 'value'),
 		'tag' => array('type' => 'subquery', 'method' => 'searchTag', 'field' => 'Post.id'),
 		'category' => array('field' => 'Post.category_id', 'type' => 'value')
 	);
@@ -96,20 +96,22 @@ class Post extends AppModel	{
 	// @query
 	// select post_id from posts inner join posts_tags on posts.id = posts_tags.post_id where posts_tags.tag_id = 1;
 	function searchTag($data = array()) {
+		// $data = have tag id
 		$cond = array_values($data['tag']);
-		$query = $this->PostsTag->find('all', array(
+		$query = $this->PostsTag->find('list', array(
 			// SQLのwhere句に該当
 			'conditions' => array('PostsTag.tag_id' => $cond),
 			#'group' => 'PostsTag.tag_id HAVING COUNT(PostsTag.tag_id) = ' . count($cond),
 			// 取得するフィールドの列選択
 			'fields' => 'post_id'
-			#'contain' => array('Tag')
 			)
 		);
-		for($i=0;$i<count($query);$i++) {
-			$buf[] = $query[$i]['PostsTag']['post_id'];
+
+		if (empty($query)) {
+			return;
 		}
-		$buf = implode(',', $buf);
-		return $buf;
+
+		$post_id = implode(',', $query);
+		return $post_id;
 	}
 }

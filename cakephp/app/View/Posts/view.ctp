@@ -1,16 +1,15 @@
 <h2><?php echo $post['Post']['title']; ?></h2>
-<div class="well">
+
 <?php
+echo '<div class="view_cate">Category: ' . $post['Category']['name'];
 
-echo '<div class="view_cate">Category: ' . $post['Category']['name'] . '</div>';
-
-echo '<div class="view_tag">Tag: ';
+echo ' Tag: ';
 foreach ($post['Tag'] as $value) {
 	echo $value['name'] . ',';
 }
 echo '</div>';
 
-echo $post['Post']['body'];
+echo '<div id="view_body" class="well well-sm">' . $post['Post']['body'] . '</div>';
 
 echo '<div id="' . $post['Post']['id'] . '">';
 $cnt = 0;
@@ -28,4 +27,3 @@ foreach ($post['Attachment'] as $value) {
 }
 echo '</div>';
 ?>
-</div><!-- well -->

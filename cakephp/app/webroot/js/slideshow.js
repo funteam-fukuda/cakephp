@@ -39,7 +39,7 @@ $(function() {
             $(modal).css({'left': x + 'px','top': y + 'px'});
         }
 
-    var current_id = $(this).attr('class');
+        var current_id = $(this).attr('class');
         current_id = current_id.match(/([0-9]+)/)[0];
         // block id
         var block_id = $(this).parent('div').attr('id');
@@ -66,13 +66,13 @@ $(function() {
 
             if (current_id == 0) {
                 if (arr.length > 1) {
-                    $('div#img-block').append('<a id="next_img" href="javascript:void(0)">next</a>');
+                    $('div#img-block').append('<a id="next_img" href="javascript:void(0)"><img class="img_next" src="http://blog.dev/cakephp/img/arrow-right.png" /></a>');
                 }
             } else if(current_id == arr.length - 1) {
-                $('div#img-block').append('<a id="prev_img" href="javascript:void(0)">prev</a>');
+                $('div#img-block').append('<a id="prev_img" href="javascript:void(0)"><img class="img_prev" src="http://blog.dev/cakephp/img/arrow-left.png" /></a>');
             } else {
-                $('div#img-block').append('<a id="next_img" href="javascript:void(0)">next</a>');
-                $('div#img-block').append('<a id="prev_img" href="javascript:void(0)">prev</a>');
+                $('div#img-block').append('<a id="next_img" href="javascript:void(0)"><img class="img_next" src="http://blog.dev/cakephp/img/arrow-right.png" /></a>');
+                $('div#img-block').append('<a id="prev_img" href="javascript:void(0)"><img class="img_prev" src="http://blog.dev/cakephp/img/arrow-left.png" /></a>');
             }
         }
 

@@ -1,21 +1,6 @@
 <?php echo $this->Html->script('zipcode.js'); ?>
 
 <?php
-echo $this->Form->create('PostalCode', array(
-	'url' => 'javascript:void(0)'));
-echo $this->Form->input('request', array(
-	'label' => 'PostalCodeSearch'));
-
-echo $this->Form->input('result', array(
-	'type' => 'select',
-	'id' => 'result_zipcode',
-	'label' => false));
-
-echo $this->Form->submit('Search', array(
-	'id' => 'searchZipCode', 'class' => 'btn'));
-echo $this->Form->end();
-?>
-<?php
 echo $this->Html->link(
 	'Add Post', array('action' => 'add'));
 echo ' | ';
@@ -25,7 +10,9 @@ echo ' | ';
 echo $this->Html->link(
 	'Logout', array('controller' => 'users', 'action' => 'logout'));
 ?>
+
 <?php foreach ($posts as $post): ?>
+<div class="postwrap">
 <h2 class="post-title"><?php echo $this->Html->link($post['Post']['title'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?></h2>
 <?php echo $post['Post']['created']; ?>
  by <?php echo $post['User']['username']; ?> 
@@ -35,14 +22,14 @@ echo $this->Html->link(
 								 array('action' => 'delete', $post['Post']['id']),
 								 array('confirm' => 'Are you sure?')); ?>
 <?php endif; ?>
-Category: <?php echo $post['Category']['name']; ?>
-Tag: 
+ Category: <?php echo $post['Category']['name']; ?>
+ Tag: 
 <?php foreach ($post['Tag'] as $tag): ?>
 <?php echo $tag['name']; ?>, 
 <?php endforeach; ?>
 
 <?php
-echo '<div id="' . $post['Post']['id'] . '">';
+echo '<div class="index-img" id="' . $post['Post']['id'] . '">';
 $cnt = 0;
 foreach ($post['Attachment'] as $value) {
 	if ($value['photo_dir'] != '') {
@@ -58,8 +45,10 @@ foreach ($post['Attachment'] as $value) {
 }
 echo '</div>';
 ?>
-<?php echo $post['Post']['body']; ?>
-
+<?php
+echo mb_strimwidth($post['Post']['body'], 0, 100, '...', 'utf-8');
+?>
+</div><!-- div.postwrap end -->
 <?php endforeach; ?>
 
 <div class="pagination pagination-centered">
