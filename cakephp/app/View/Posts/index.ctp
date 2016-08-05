@@ -1,5 +1,3 @@
-<?php echo $this->Html->script('zipcode.js'); ?>
-
 <?php
 echo $this->Html->link(
 	'Add Post', array('action' => 'add'));
@@ -36,7 +34,7 @@ foreach ($post['Attachment'] as $value) {
 		$imgurl = '/files/attachment/photo/' . $value['photo_dir'] . '/' . $value['photo'];
 		echo $this->Html->link(
 			$this->Html->image($imgurl,
-			array('width' => '100', 'height' => '100')),
+			array('width' => '100', 'height' => '100', 'class' => 'img-thumbnail imgthmb')),
 			'javascript:void(0)',
 			array('escape' => false, 'data-target' => 'con1', 'class' => "modal-open $cnt")
 		);
@@ -51,10 +49,8 @@ echo mb_strimwidth($post['Post']['body'], 0, 100, '...', 'utf-8');
 </div><!-- div.postwrap end -->
 <?php endforeach; ?>
 
-<div class="pagination pagination-centered">
-<ul>
+<ul class="pager">
 <?php echo $this->Paginator->prev('< prev', array(), null, array('class' => 'prev disabled')); ?>
 <?php echo $this->Paginator->numbers(array('separator' => '')); ?>
 <?php echo $this->Paginator->next('next >', array(), null, array('class' => 'next disabled')); ?>
 </ul>
-</div><!-- end pagination -->

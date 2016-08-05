@@ -4,22 +4,25 @@
 
 			<?php
 			echo $this->Form->create('PostalCode', array(
-				'url' => 'javascript:void(0)'));
+				'url' => 'javascript:void(0)', 'class' => 'form-search postform-wrap'));
 			echo $this->Form->input('request', array(
 				'label' => 'PostalCodeSearch',
-				'class' => 'postalcodeform'));
+				'class' => 'postalcodeform input-medium search-query',
+				'div' => false));
+
+			echo $this->Form->submit('Search', array(
+				'id' => 'searchZipCode', 'class' => 'btn btn-primary', 'div' => false));
 
 			echo $this->Form->input('result', array(
 				'type' => 'select',
 				'id' => 'result_zipcode',
-				'label' => false));
+				'label' => false,
+				'div' => false));
 
-			echo $this->Form->submit('Search', array(
-				'id' => 'searchZipCode', 'class' => 'btn'));
 			echo $this->Form->end();
 			?>
 
-			<button><img src="http://blog.dev/cakephp/img/btn_open.png"></button>
+			<button id="open_btn"><img src="http://blog.dev/cakephp/img/btn_open.png"></button>
 		</div>
 	</aside>
 </div>

@@ -5,23 +5,23 @@
 		'novalidate' => true,
 		'url' => array_merge(array('action' => 'search'), $this->params['pass'])
 		));
-	echo $this->Form->input('title', array('div' => false));
+	echo $this->Form->input('title', array('div' => 'form-group', 'class' => 'form-control'));
 	echo $this->Form->input('Post.category', array(
 		'type' => 'select',
 		'multiple' => 'checkbox',
-		'options' => $categories,
-		'div' => false,
-		'class' => 'checkbox inline'
+		'options' => $head_categories,
+		'div' => 'checkbox_wrap',
+		'class' => 'checkbox'
 	));
 	echo $this->Form->input('Post.tag', array(
 		'type' => 'select',
 		'multiple' => 'checkbox',
-		'options' => $tags,
-		'div' => false,
-		'class' => 'checkbox inline'
+		'options' => $head_tags,
+		'div' => 'checkbox_wrap',
+		'class' => 'checkbox'
 	));
 	echo $this->Form->submit('Search', array(
-		'class' => 'btn'));
+		'class' => 'btn btn-success'));
 	echo $this->Form->end();
 	?>
 </div>

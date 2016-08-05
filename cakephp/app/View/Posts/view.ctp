@@ -1,3 +1,5 @@
+<?php $this->Html->addCrumb('View'); ?>
+
 <h2><?php echo $post['Post']['title']; ?></h2>
 
 <?php

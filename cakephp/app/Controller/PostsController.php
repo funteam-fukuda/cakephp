@@ -9,17 +9,14 @@ class PostsController extends AppController {
     // URLフォーマットやSQLに渡す検索条件を構成する処理？
     public $presetVars = true;
 
-    public $uses = array('Post', 'Category', 'PostalCode', 'Attachment');
+    public $uses = array('Post', 'Category', 'PostalCode', 'Attachment', 'Tag');
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('index', 'view');
+        $this->Auth->allow();
     }
 
-    public function index() {
-        // disp login user
-        debug($this->Auth->user('username'));
-        
+    public function index() {        
         $this->paginate = $this->Post->post_pagenate();
         $this->set('posts', $this->paginate());
         // layout off
@@ -47,7 +44,8 @@ class PostsController extends AppController {
         $this->set('posts', $this->Category->find('list', array('fields' => 'Category.name')));
 
         // tag
-        $this->set('tag', $this->Post->find('all'));
+        $this->loadModel('Tag');
+        $this->set('tag', $this->Tag->find('list'));
 
     	if ($this->request->is('post')) {
             $this->request->data['Post']['user_id'] = $this->Auth->user('id');
@@ -83,7 +81,8 @@ class PostsController extends AppController {
         $this->set('posts', $this->Category->find('list', array('fields' => 'Category.name')));
 
         // tag
-        $this->set('tag', $this->Post->find('all'));
+        $this->loadModel('Tag');
+        $this->set('tag', $this->Tag->find('list'));
 
     	if ($this->request->is(array('post', 'put'))) {
     		$this->Post->id = $id;

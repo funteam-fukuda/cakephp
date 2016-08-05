@@ -1,7 +1,7 @@
 $(function() {
 	var duration = 300;
 	var aside = $('.page-main > aside');
-	var asideBtn = aside.find('button').click(function() {
+	var asideBtn = aside.find('button#open_btn').click(function() {
 		aside.toggleClass('open');
 		if (aside.hasClass('open')) {
 			aside.stop(true).animate({left:'-70px'}, duration, 'easeOutBack');

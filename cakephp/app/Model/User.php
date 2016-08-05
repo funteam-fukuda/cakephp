@@ -15,7 +15,7 @@ class User extends AppModel {
 			'order' => ''
 		)
 	);
-	public $actsAs = array('Acl' => array('type' => 'requester', 'enabled' => false));
+	public $actsAs = array('Acl' => array('type' => 'requester'));
 
 	public $validate = array(
 		'username' => array(
@@ -68,7 +68,7 @@ class User extends AppModel {
         return true;
     }*/
 
-    public function bindNode($user) {
+    /*public function bindNode($user) {
     	return array('model' => 'Group', 'foreign_key' => $user['User']['group_id']);
-    }
+    }*/
 }

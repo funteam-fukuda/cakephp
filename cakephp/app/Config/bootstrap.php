@@ -66,7 +66,7 @@ Cache::config('default', array('engine' => 'File'));
  */
 
    CakePlugin::loadAll(); // Loads all plugins at once
-   CakePlugin::load(array('DebugKit', 'Upload', 'Search', 'TwitterBootstrap', 'AclExtras')); // Loads a single plugin named DebugKit
+   CakePlugin::load(array('DebugKit', 'Upload', 'Search', 'BoostCake', 'AclExtras')); // Loads a single plugin named DebugKit
 
 /**
  * To prefer app translation over plugin translation, you can set
