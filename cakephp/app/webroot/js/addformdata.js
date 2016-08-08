@@ -1,6 +1,6 @@
 $(function() {
 	$('div.editimg').appendTo($('#regist_img'));
-	$('#addimg').append('<button id="addFormData" onclick="return false;">追加</button>');
+	$('#addimg').append('<button id="addFormData" class="btn btn-primary" onclick="return false;">Add Image</button>');
 
 	$('#addFormData').click(function() {
 		$('#uploadform').append('<div class="upitem"><input type="file" style="display:none;"><div class="input-group"><input type="text" id="photoCover" class="form-control" placeholder="select file..."><span class="input-group-btn"><button type="button" class="btn btn-info"><span class="glyphicon glyphicon-file" aria-hidden="true"></span></button></span></div></div>');

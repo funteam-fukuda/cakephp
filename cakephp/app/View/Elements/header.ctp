@@ -1,27 +1,44 @@
-<div class="clickArea">Search Form</div>
-<div class="searchArea">
-	<?php
-	echo $this->Form->create('Post', array(
-		'novalidate' => true,
-		'url' => array_merge(array('action' => 'search'), $this->params['pass'])
-		));
-	echo $this->Form->input('title', array('div' => 'form-group', 'class' => 'form-control'));
-	echo $this->Form->input('Post.category', array(
-		'type' => 'select',
-		'multiple' => 'checkbox',
-		'options' => $head_categories,
-		'div' => 'checkbox_wrap',
-		'class' => 'checkbox'
-	));
-	echo $this->Form->input('Post.tag', array(
-		'type' => 'select',
-		'multiple' => 'checkbox',
-		'options' => $head_tags,
-		'div' => 'checkbox_wrap',
-		'class' => 'checkbox'
-	));
-	echo $this->Form->submit('Search', array(
-		'class' => 'btn btn-success'));
-	echo $this->Form->end();
+<nav class="collapse navbar-collapse">
+	<ul class="nav navbar-nav">
+	<li>
+	<?php echo $this->Html->link(
+	'Home', array('controller' => 'posts', 'action' => 'index'));
 	?>
-</div>
+	</li>
+	<li>
+	<?php echo $this->Html->link(
+	'AddPost', array('controller' => 'posts', 'action' => 'add'));
+	?>
+	</li>
+	<li>
+	<?php echo $this->Html->link(
+	'User', array('controller' => 'users', 'action' => 'index'));
+	?>
+	</li>
+	<li>
+	<?php echo $this->Html->link(
+	'Group', array('controller' => 'groups', 'action' => 'index'));
+	?>
+	</li>
+	<li>
+	<?php echo $this->Html->link(
+	'Tag', array('controller' => 'tags', 'action' => 'index'));
+	?>
+	</li>
+	<li>
+	<?php echo $this->Html->link(
+	'Category', array('controller' => 'categories', 'action' => 'index'));
+	?>
+	</li>
+	<li>
+	<?php echo $this->Html->link(
+	'Login', array('controller' => 'users', 'action' => 'login'));
+	?>
+	</li>
+	<li>
+	<?php echo $this->Html->link(
+	'Logout', array('controller' => 'users', 'action' => 'logout'));
+	?>
+	</li>
+	</ul>
+</nav>

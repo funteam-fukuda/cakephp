@@ -48,11 +48,12 @@ class CategoriesController extends AppController {
 		$result = $this->Category->Post->find('first', array(
 			'conditions' => array('category_id' => $id)));
 		if (empty($result)) {
-			if ($this->request->delete($id)) {
+			if ($this->Category->delete($id)) {
 				$this->Flash->success(__('success'));
 			} else {
 				$this->Flash->error(__('error'));
 			}
+			return $this->redirect(array('action' => 'index'));
 		} else {
 			$this->Flash->error(__('記事と紐付いているためカテゴリを削除できません'));
 			return $this->redirect(array('action' => 'index'));

@@ -45,7 +45,6 @@ $(function() {
         var block_id = $(this).parent('div').attr('id');
         var obj = $('div#' + block_id);
         var tags = obj.html();
-        console.log(tags);
         var arr = tags.match(/img src="(.*?)"/g);
         var img_src = {};
 
@@ -60,8 +59,8 @@ $(function() {
             $('div#img-block').append('<img src="' + img_src[current_id] + '" />');
             var img = new Image();
             img.src = convertAbsUrl(img_src[current_id]);
-            $('.modal-content').css('max-width', img.width);
-            $('.modal-content').css('max-height', img.height);
+            $('.modal-contents').css('max-width', img.width);
+            $('.modal-contents').css('max-height', img.height);
             modalResize();
 
             if (current_id == 0) {

@@ -7,7 +7,7 @@
 				'url' => 'javascript:void(0)', 'class' => 'form-search postform-wrap'));
 			echo $this->Form->input('request', array(
 				'label' => 'PostalCodeSearch',
-				'class' => 'postalcodeform input-medium search-query',
+				'class' => 'postalcodeform form-control',
 				'div' => false));
 
 			echo $this->Form->submit('Search', array(

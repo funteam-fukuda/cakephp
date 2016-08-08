@@ -35,8 +35,8 @@ class TagsController extends AppController {
 			$this->Flash->success(__('success'));
 		} else {
 			$this->Flash->error(__('このタグは使用中です'));
-			return $this->redirect(array('action' => 'index'));
 		}
+		return $this->redirect(array('action' => 'index'));
 	}
 
 	public function add() {

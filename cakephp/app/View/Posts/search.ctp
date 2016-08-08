@@ -1,29 +1,28 @@
+<?php $this->Html->addCrumb('Search'); ?>
+
+<p>検索結果は<?php echo (!empty($posts)) ? count($posts) : 0; ?>件です。</p>
 <?php if(!empty($posts)): ?>
-<table class="table table-striped table-bordered">
-<tr>
-<th>title</th>
-<th>category</th>
-<th>tag</th>
-<th>body</th>
-</tr>
 <?php foreach ($posts as $post): ?>
-<tr>
-<td>
-<?php echo $this->Html->link($post['Post']['title'], array(
-	'controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?>
-</td>
-<td>
-<?php echo $post['Category']['name']; ?>
-</td>
-<td>
-<?php foreach ($post['Tag'] as $tag): ?>
-<?php echo $tag['name']; ?>, 
+<div class="content">
+<h3><?php echo $this->Html->link($post['Post']['title'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?></h3>
+<ul class="meta-list list-inline">
+	<li>
+		<span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?php echo $post['User']['username']; ?> 
+	</li>
+	<li>
+		Category : <?php echo $post['Category']['name']; ?>
+	</li>
+	<li>
+		Tag : 
+	<?php foreach ($post['Tag'] as $tag): ?>
+	<?php echo $tag['name']; ?>, 
+	<?php endforeach; ?>
+	</li>
+	<li class="date">
+		<?php echo preg_replace('/ \d{2}:\d{2}:\d{2}/', '', $post['Post']['created']); ?>
+	</li>
+</ul>
+<?php echo mb_strimwidth($post['Post']['body'], 0, 300, '...', 'utf-8'); ?>
+</div><!-- content -->
 <?php endforeach; ?>
-</td>
-<td>
-<?php echo $post['Post']['body']; ?>
-</td>
-</tr>
-<?php endforeach; ?>
-</table>
 <?php endif; ?>

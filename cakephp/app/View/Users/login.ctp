@@ -1,25 +1,21 @@
-<!--<div class="users form">
-<?php echo $this->Flash->render('auth'); ?>
-<?php echo $this->Form->create('User'); ?>
-	<fieldset>
-		<legend>
-			<?php echo __('Please enter your username and password'); ?>
-		</legend>
-		<?php echo $this->Form->input('username');
-		echo $this->Form->input('password');
-		?>
-	</fieldset>
-<?php echo $this->Form->end(__('Login')); ?>
-</div>-->
+<?php $this->Html->addCrumb('User'); ?>
 
-<h2>Login</h2>
+<legend>Login</legend>
 <?php
 echo $this->Form->create('User', array(
     'url' => array(
         'controller' => 'users',
         'action' => 'login'
-    )
+    ),
+    'class' => 'well form-group'
 ));
-echo $this->Form->input('User.username');
-echo $this->Form->input('User.password');
-echo $this->Form->end('Login');
+echo $this->Form->input('User.username', array(
+	'class' => 'form-control', 'div' => 'form-group'));
+echo $this->Form->input('User.password', array(
+	'class' => 'form-control', 'div' => 'form-group'));
+$options = array(
+	'label' => 'Login',
+	'div' => false,
+	'class' => 'btn btn-success btn-block');
+echo $this->Form->end($options);
+?>

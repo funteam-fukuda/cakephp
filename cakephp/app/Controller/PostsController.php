@@ -51,7 +51,9 @@ class PostsController extends AppController {
             $this->request->data['Post']['user_id'] = $this->Auth->user('id');
     		#$this->Post->create();
     		if ($this->Post->saveAll($this->request->data)) {
-    			$this->Flash->success(__('Your post has been saved.'));
+    			$this->Flash->success(__('Your post has been saved.'), 'alert', array(
+                    'plugin' => 'BoostCake',
+                    'class' => 'alert-success'));
     			return $this->redirect(array('action' => 'index'));
     		}
     		$this->Flash->error(__('Unable to add your post.'));
@@ -130,25 +132,6 @@ class PostsController extends AppController {
 
         return $this->redirect($this->referer());
     }
-
-    /*public function isAuthorized($user) {
-        
-        // index.ctpからaddに遷移した際
-        if ($this->action == 'add') {
-            return true;
-        }
-        // edit or delete の場合
-        if (in_array($this->action, array('edit', 'delete'))) {
-            // request page ID を取得
-            $postId = (int) $this->request->params['pass'][0];
-            // ログイン中のuser IDと比較して一致する場合、その他のアクションも許可
-            if ($this->Post->isOwnedBy($postId, $user[('id')])) {
-                return true;
-            }
-        }
-
-        return parent::isAuthorized($user);
-    }*/
 
     public function search() {
 

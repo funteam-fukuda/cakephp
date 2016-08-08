@@ -1,4 +1,6 @@
-<h1>Add Post</h1>
+<?php $this->Html->addCrumb('Add'); ?>
+
+<legend>Add Post</legend>
 <?php
 echo $this->Form->create('Post', array('type' => 'file'));
 echo $this->Form->input('title', array('class' => 'form-control', 'div' => 'form-group'));
