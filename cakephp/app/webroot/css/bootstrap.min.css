@@ -13,7 +13,7 @@ h1, h2, h3 {
 }
 
 h1 {
-	font-size: 25px;
+	margin-top: 10px;
 	padding-bottom: 10px;
 }
 
@@ -274,6 +274,15 @@ div#xs-btn a {
 
 /* groups End */
 
+/* users */
+
+#UserEditForm input#UserUsername {
+	width: 350px;
+	margin: 0 5px 0 20px;
+}
+
+/* users End */
+
 /* header */
 
 header {
@@ -350,4 +359,21 @@ div.view-imgwrap {
 	padding-top: 10px;
 }
 
+.view_h3 {
+	color: #333;
+}
+
 /* view End */
+
+/* error msg */
+
+.error-message {
+	color: #ff0000;
+	margin-top: 3px;
+}
+
+.tagerr {
+	margin: -15px 0 10px 0;
+}
+
+/* error msg End */

@@ -3,7 +3,8 @@
 <h3><?php echo $this->Html->link($post['Post']['title'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?></h3>
 <ul class="meta-list list-inline">
 	<li>
-		<span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?php echo $post['User']['username']; ?> 
+		<span class="glyphicon glyphicon-user" aria-hidden="true"></span> 
+		<?php echo (empty($post['User']['username'])) ? 'Unknown' : $post['User']['username']; ?>
 	</li>
 	<?php if (!is_null($login)): ?>
 	<li>

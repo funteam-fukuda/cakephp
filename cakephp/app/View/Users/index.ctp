@@ -1,5 +1,14 @@
 <?php $this->Html->addCrumb('User'); ?>
 
+<div id="xs-btn">
+<?php
+	echo $this->Html->link('追加', array(
+		'controller' => 'users', 'action' => 'add'), array('class' => 'btn btn-primary btn-xs'));
+	echo $this->Html->link('編集・削除', array(
+		'controller' => 'users', 'action' => 'edit'), array('class' => 'btn btn-primary btn-xs'));
+?>
+</div>
+
 <table class="table table-striped table-bordered">
 <tr>
 <th>Id</th>

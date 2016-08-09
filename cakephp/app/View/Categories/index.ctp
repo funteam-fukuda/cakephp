@@ -14,7 +14,8 @@ echo $this->Form->create('Category', array(
 		'div' => 'form-group',
 		'class' => 'form-control'
 	),
-	'class' => 'form-inline'
+	'class' => 'form-inline',
+	'novalidate' => true
 ));
 echo $this->Form->input('name', array('label' => false, 'class' => 'form-control')); 
 echo $this->Form->submit('Add', array(
@@ -41,7 +42,8 @@ echo $this->Form->create('Category', array(
 		'div' => 'form-group',
 		'class' => 'form-control'
 	),
-	'class' => 'form-inline'
+	'class' => 'form-inline',
+	'novalidate' => true
 	));
 echo $this->Form->input('name', array(
 	'label' => false,

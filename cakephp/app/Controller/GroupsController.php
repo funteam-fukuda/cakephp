@@ -21,10 +21,17 @@ class GroupsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Group->create();
 			if ($this->Group->save($this->request->data)) {
-				$this->Flash->success(__('The group has been saved.'));
+	            $this->Session->setFlash(__('The group has been saved.'), 'alert', array(
+	                'plugin' => 'BoostCake',
+	                'class' => 'alert-success'
+	            ));
 				return $this->redirect(array('action' => 'index'));
 			}
-			$this->Flash->error(__('The group could not be saved. Please, try again.'));
+            $this->Session->setFlash(__('The group could not be saved. Please, try again.'), 'alert', array(
+                'plugin' => 'BoostCake',
+                'class' => 'alert-danger'
+            ));
+            return $this->redirect(array('action' => 'index'));
 		}
 	}
 
@@ -36,13 +43,22 @@ class GroupsController extends AppController {
 				'name' => $this->request->data['Group']['name'])));
 			if (empty($result)) {
 				if ($this->Group->save($this->request->data)) {
-					$this->Flash->success(__('success!'));
+		            $this->Session->setFlash(__('success!'), 'alert', array(
+		                'plugin' => 'BoostCake',
+		                'class' => 'alert-success'
+		            ));
 				} else {
-					$this->Flash->error(__('error!' . __line__));
+		            $this->Session->setFlash(__('error!' . __line__), 'alert', array(
+		                'plugin' => 'BoostCake',
+		                'class' => 'alert-danger'
+		            ));
 				}
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('この名前は既に使用中です。'));
+	            $this->Session->setFlash(__('この名前は既に使用中です。'), 'alert', array(
+	                'plugin' => 'BoostCake',
+	                'class' => 'alert-danger'
+	            ));
 				$this->redirect(array('action' => 'index'));
 			}
 		}
@@ -57,13 +73,22 @@ class GroupsController extends AppController {
 				'group_id' => $id)));
 		if (empty($result)) {
 			if ($this->Group->delete($id)) {
-				$this->Flash->success(__('success!'));
+	            $this->Session->setFlash(__('success!'), 'alert', array(
+	                'plugin' => 'BoostCake',
+	                'class' => 'alert-success'
+	            ));
 			} else {
-				$this->Flash->error(__('error!' . __line__));
+	            $this->Session->setFlash(__('error!' . __line__), 'alert', array(
+	                'plugin' => 'BoostCake',
+	                'class' => 'alert-danger'
+	            ));
 			}
 			$this->redirect(array('action' => 'index'));
 		} else {
-			$this->Flash->error(__('このグループに属しているユーザーが存在する為削除できません。'));
+            $this->Session->setFlash(__('このグループに属しているユーザーが存在する為削除できません。'), 'alert', array(
+                'plugin' => 'BoostCake',
+                'class' => 'alert-danger'
+            ));
 			$this->redirect(array('action' => 'index'));
 		}
 	}

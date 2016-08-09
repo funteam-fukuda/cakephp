@@ -1,6 +1,6 @@
 <div class="users form">
 <?php echo $this->Form->create('User', array(
-	'class' => 'form-group')); ?>
+	'class' => 'form-group', 'novalidate' => true)); ?>
 	<fieldset>
 		<legend><?php echo __('Add User'); ?></legend>
 		<?php

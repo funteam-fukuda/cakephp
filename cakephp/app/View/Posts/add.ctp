@@ -2,7 +2,7 @@
 
 <legend>Add Post</legend>
 <?php
-echo $this->Form->create('Post', array('type' => 'file'));
+echo $this->Form->create('Post', array('type' => 'file', 'novalidate' => true));
 echo $this->Form->input('title', array('class' => 'form-control', 'div' => 'form-group'));
 echo $this->Form->input('body', array('rows' => '3', 'class' => 'form-control', 'div' => 'form-group'));
 echo $this->Form->input('category_id', array(
@@ -10,12 +10,19 @@ echo $this->Form->input('category_id', array(
 	'div' => 'form-group',
 	'class' => 'form-control',
 	'options' => $posts));
+
 echo $this->Form->input('Tag', array(
 	'div' => 'checkbox_wrap',
 	'type' => 'select',
 	'multiple' => 'checkbox',
 	'options' => $tag
 	));
+
+if (!empty($tag_error)) {
+	echo '<div class="error-message tagerr">';
+	echo $tag_error[0];
+	echo '</div>';
+}
 ?>
 
 <div class="upitem">

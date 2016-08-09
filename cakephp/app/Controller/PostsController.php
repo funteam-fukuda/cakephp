@@ -19,10 +19,6 @@ class PostsController extends AppController {
     public function index() {        
         $this->paginate = $this->Post->post_pagenate();
         $this->set('posts', $this->paginate());
-        // layout off
-        // $this->autoLayout = false;
-        $login = $this->Auth->user();
-        $this->set('login', $login);
     }
 
     public function view($id = null) {
@@ -51,12 +47,21 @@ class PostsController extends AppController {
             $this->request->data['Post']['user_id'] = $this->Auth->user('id');
     		#$this->Post->create();
     		if ($this->Post->saveAll($this->request->data)) {
-    			$this->Flash->success(__('Your post has been saved.'), 'alert', array(
+                $this->Session->setFlash(__('Your post has been saved.'), 'alert', array(
                     'plugin' => 'BoostCake',
-                    'class' => 'alert-success'));
+                    'class' => 'alert-success'
+                ));
     			return $this->redirect(array('action' => 'index'));
     		}
-    		$this->Flash->error(__('Unable to add your post.'));
+            
+            // tagが2つ以上選択されていない場合のエラーメッセージを取得
+            $errors = $this->Post->validationErrors;
+            if (!empty($errors)) $this->set('tag_error', $errors['Tag']);
+
+            $this->Session->setFlash(__('Unable to add your post.'), 'alert', array(
+                'plugin' => 'BoostCake',
+                'class' => 'alert-danger'
+            ));
     	}
     }
 
@@ -89,10 +94,21 @@ class PostsController extends AppController {
     	if ($this->request->is(array('post', 'put'))) {
     		$this->Post->id = $id;
     		if ($this->Post->saveAll($this->request->data)) {
-    			$this->Flash->success(__('your post has been updated.'));
+                $this->Session->setFlash(__('your post has been updated.'), 'alert', array(
+                    'plugin' => 'BoostCake',
+                    'class' => 'alert-success'
+                ));
     			return $this->redirect(array('action' => 'index'));
-    		}
-    		$this->Flash->error(__('Unable to update your post.'));
+    		} else {
+                // tagが2つ以上選択されていない場合のエラーメッセージを取得
+                $errors = $this->Post->validationErrors;
+                if (!empty($errors)) $this->set('tag_error', $errors['Tag']);
+
+                $this->Session->setFlash(__('Unable to update your post.'), 'alert', array(
+                    'plugin' => 'BoostCake',
+                    'class' => 'alert-danger'
+                ));
+            }
     	}
     	// もしrequest->dataが空だったら、ここでデータを挿入している
     	if (!$this->request->data) {
@@ -111,9 +127,15 @@ class PostsController extends AppController {
             }
         }
     	if ($this->Post->delete($id)) {
-    		$this->Flash->success(__('The post with id: %s has been deleted.', h($id)));
+            $this->Session->setFlash(__('The post with id: %s has been deleted.', h($id)), 'alert', array(
+                'plugin' => 'BoostCake',
+                'class' => 'alert-success'
+            ));
     	} else {
-	    	$this->Flash->error(__('The post with id: %s could not be deleted.', h($id)));
+            $this->Session->setFlash(__('The post with id: %s could not be deleted.', h($id)), 'alert', array(
+                'plugin' => 'BoostCake',
+                'class' => 'alert-danger'
+            ));
 	    }
 
 	    return $this->redirect(array('action' => 'index'));
@@ -125,11 +147,16 @@ class PostsController extends AppController {
         }
 
         if ($this->Attachment->delete($id)) {
-            $this->Flash->success(__('delete image!'));
+            $this->Session->setFlash(__('delte image!'), 'alert', array(
+                'plugin' => 'BoostCake',
+                'class' => 'alert-success'
+            ));
         } else {
-            $this->Flash->error(__('error'));
+            $this->Session->setFlash(__('error!' . __line__), 'alert', array(
+                'plugin' => 'BoostCake',
+                'class' => 'alert-danger'
+            ));
         }
-
         return $this->redirect($this->referer());
     }
 

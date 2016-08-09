@@ -1,7 +1,7 @@
 
 <div class="groups form">
 <?php echo $this->Form->create('Group', array(
-	'class' => 'form-group')); ?>
+	'class' => 'form-group', 'novalidate' => true)); ?>
 		<legend><?php echo __('Add Group'); ?></legend>
 	<?php
 		echo $this->Form->input('name', array(

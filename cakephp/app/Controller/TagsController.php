@@ -14,12 +14,22 @@ class TagsController extends AppController {
 				'conditions' => array('name' => $this->request->data['Tag']['name'])));
 			if (empty($result)) {
 				if ($this->Tag->save($this->request->data)) {
-					$this->Flash->success(__('success'));
+		            $this->Session->setFlash(__('success!'), 'alert', array(
+		                'plugin' => 'BoostCake',
+		                'class' => 'alert-success'
+		            ));
 					return $this->redirect(array('action' => 'index'));
 				}
-				$this->Flash->error(__('error'));
+	            $this->Session->setFlash(__('error!'), 'alert', array(
+	                'plugin' => 'BoostCake',
+	                'class' => 'alert-danger'
+	            ));
 			} else {
-				$this->Flash->error(__('既に使用されている名前です'));
+	            $this->Session->setFlash(__('既に使用されている名前です。'), 'alert', array(
+	                'plugin' => 'BoostCake',
+	                'class' => 'alert-danger'
+	            ));
+	            return $this->redirect(array('action' => 'index'));
 			}
 		}
 	}
@@ -32,9 +42,15 @@ class TagsController extends AppController {
 			'conditions' => array('tag_id' => $id)));
 		if (empty($result)) {
 			$this->Tag->delete($id);
-			$this->Flash->success(__('success'));
+            $this->Session->setFlash(__('success!'), 'alert', array(
+                'plugin' => 'BoostCake',
+                'class' => 'alert-success'
+            ));
 		} else {
-			$this->Flash->error(__('このタグは使用中です'));
+            $this->Session->setFlash(__('このタグは使用中です。'), 'alert', array(
+                'plugin' => 'BoostCake',
+                'class' => 'alert-danger'
+            ));
 		}
 		return $this->redirect(array('action' => 'index'));
 	}
@@ -48,12 +64,21 @@ class TagsController extends AppController {
 				'conditions' => array('name' => $this->request->data['Tag']['name'])));
 			if (empty($result)) {
 				if ($this->Tag->save($this->request->data)) {
-					$this->Flash->success(__('success!'));
+		            $this->Session->setFlash(__('success!'), 'alert', array(
+		                'plugin' => 'BoostCake',
+		                'class' => 'alert-success'
+		            ));
 					return $this->redirect(array('action' => 'index'));
 				}
-				$this->Flash->error(__('error' . __line__ . 'line..'));
+	            $this->Session->setFlash(__('error! ' . __line__ . 'line'), 'alert', array(
+	                'plugin' => 'BoostCake',
+	                'class' => 'alert-danger'
+	            ));
 			} else {
-				$this->Flash->error(__('このタグは既に存在しています'));
+	            $this->Session->setFlash(__('このタグは既に存在しています。'), 'alert', array(
+	                'plugin' => 'BoostCake',
+	                'class' => 'alert-danger'
+	            ));
 				$this->redirect(array('action' => 'index'));
 			}
 		}

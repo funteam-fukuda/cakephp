@@ -14,13 +14,24 @@ class CategoriesController extends AppController {
 				'conditions' => array('name' => $this->request->data['Category']['name'])));
 			if (empty($result)) {
 				if ($this->Category->save($this->request->data)) {
-					$this->Flash->success(__('name changed'));
-					return $this->redirect(array('action' => 'index'));
-				}
-				$this->Flash->error(__('error'));
-			} else {
-				$this->Flash->error(__('既に使用されている名前です'));
-			}
+		            $this->Session->setFlash(__('success!'), 'alert', array(
+		                'plugin' => 'BoostCake',
+		                'class' => 'alert-success'
+		            ));
+				} else {
+		            $this->Session->setFlash(__('登録に失敗しました。'), 'alert', array(
+		                'plugin' => 'BoostCake',
+		                'class' => 'alert-danger'
+		            ));
+		        }
+		        return $this->redirect(array('action' => 'index'));
+		    } else {
+	            $this->Session->setFlash(__('既に登録されています。'), 'alert', array(
+                	'plugin' => 'BoostCake',
+                	'class' => 'alert-danger'
+            	));
+				return $this->redirect(array('action' => 'index'));
+		    }
 		}
 	}
 
@@ -30,12 +41,22 @@ class CategoriesController extends AppController {
 				'conditions' => array('name' => $this->request->data['Category']['name'])));
 			if (empty($result)) {
 				if ($this->Category->save($this->request->data)) {
-					$this->Flash->success(__('success!'));
-					return $this->redirect(array('action' => 'index'));
-				}
-				$this->Flash->error(__('error'));
+		            $this->Session->setFlash(__('success!'), 'alert', array(
+		                'plugin' => 'BoostCake',
+		                'class' => 'alert-success'
+		            ));
+				} else {
+		            $this->Session->setFlash(__('error!' . __line__), 'alert', array(
+		                'plugin' => 'BoostCake',
+		                'class' => 'alert-danger'
+		            ));
+		        }
+		        return $this->redirect(array('action' => 'index'));
 			} else {
-				$this->Flash->error(__('既に登録されています'));
+	            $this->Session->setFlash(__('既に登録されています。'), 'alert', array(
+	                'plugin' => 'BoostCake',
+	                'class' => 'alert-danger'
+	            ));
 				return $this->redirect(array('action' => 'index'));
 			}
 		}
@@ -49,13 +70,22 @@ class CategoriesController extends AppController {
 			'conditions' => array('category_id' => $id)));
 		if (empty($result)) {
 			if ($this->Category->delete($id)) {
-				$this->Flash->success(__('success'));
+	            $this->Session->setFlash(__('success!'), 'alert', array(
+	                'plugin' => 'BoostCake',
+	                'class' => 'alert-success'
+	            ));
 			} else {
-				$this->Flash->error(__('error'));
+	            $this->Session->setFlash(__('error!' . __line__), 'alert', array(
+	                'plugin' => 'BoostCake',
+	                'class' => 'alert-danger'
+	            ));
 			}
 			return $this->redirect(array('action' => 'index'));
 		} else {
-			$this->Flash->error(__('記事と紐付いているためカテゴリを削除できません'));
+            $this->Session->setFlash(__('記事と紐付いているためカテゴリを削除できません'), 'alert', array(
+                'plugin' => 'BoostCake',
+                'class' => 'alert-danger'
+            ));
 			return $this->redirect(array('action' => 'index'));
 		}
 	}

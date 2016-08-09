@@ -7,12 +7,28 @@ class Post extends AppModel	{
 	public $validate = array(
 		'title' => array(
 			'rule' => 'notBlank',
-			'required' => false
+			'message' => 'このフィールドは入力必須です。'
 		),
 		'body' => array(
-			'rule' => 'notBlank'
+			'rule' => 'notBlank',
+			'message' => 'このフィールドは入力必須です。'
+		),
+		'Tag' => array(
+			'multiple' => array(
+				'rule' => array('multiple', array('min' => 2)),
+			'message' => 'タグは2つ以上選択して下さい。'
+			)
 		)
 	);
+
+	function beforeValidate($options = array()) {
+	    foreach ($this->hasAndBelongsToMany as $k => $v) {
+	        if (isset($this->data[$k][$k])) {
+	            $this->data[$this->alias][$k] = $this->data[$k][$k];
+	        }
+	    }
+	    return true;
+	}
 
 	public function post_pagenate() {
 		$option = array(

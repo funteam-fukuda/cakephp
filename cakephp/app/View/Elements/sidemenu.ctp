@@ -10,7 +10,7 @@
 		'novalidate' => true,
 		'url' => array_merge(array('action' => 'search'), $this->params['pass'])
 		));
-	echo $this->Form->input('title', array('div' => 'form-group', 'class' => 'form-control'));
+	echo $this->Form->input('Post.title', array('div' => 'form-group', 'class' => 'form-control'));
 	echo $this->Form->input('Post.category', array(
 		'type' => 'select',
 		'multiple' => 'checkbox',
@@ -29,9 +29,9 @@
 		'class' => 'btn btn-success'));
 	echo $this->Form->end();
 	?>
+</div><!-- searchArea -->
 </div><!-- panel-body -->
 </div><!-- panel -->
-</div>
 
 <div class="panel panel-default">
 <div class="panel-heading">

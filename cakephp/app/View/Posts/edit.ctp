@@ -5,7 +5,7 @@
 
 <h1>Edit Post</h1>
 <?php
-echo $this->Form->create('Post', array('type' => 'file'));
+echo $this->Form->create('Post', array('type' => 'file', 'novalidate' => true));
 echo $this->Form->input('title', array('class' => 'form-control', 'div' => 'form-group'));
 echo $this->Form->input('body', array('rows' => '3', 'class' => 'form-control', 'div' => 'form-group'));
 echo $this->Form->input('id', array('type' => 'hidden'));
@@ -21,6 +21,12 @@ echo $this->Form->input('Tag', array(
 	'multiple' => 'checkbox',
 	'options' => $tag
 	));
+
+if (!empty($tag_error)) {
+	echo '<div class="error-message tagerr">';
+	echo $tag_error[0];
+	echo '</div>';
+}
 
 echo '<div id="regist_img"></div>';
 

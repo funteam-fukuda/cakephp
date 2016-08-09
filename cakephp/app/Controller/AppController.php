@@ -84,13 +84,8 @@ class AppController extends Controller {
         $this->set('head_tags', $this->Tag->find('list'));
         // search categories
         $this->set('head_categories', $this->Category->find('list'));
+
+		$login = $this->Auth->user();
+        $this->set('login', $login);
 	}
-
-	/*public function isAuthorized($user) {
-		if (isset($user['role']) && $user['role'] == 'admin') {
-			return true;
-		}
-
-		return false;
-	}*/
 }

@@ -3,6 +3,7 @@
 class Tag extends AppModel {
 
 	public $name = 'Tag';
+
 	public $hasAndBelongsToMany = array(
 		'Post' =>
 			array(
@@ -21,5 +22,12 @@ class Tag extends AppModel {
 				'insertQuery'			=> '',
 				'with'					=> 'PostsTag'
 			)
+	);
+
+	public $validate = array(
+		'name' => array(
+			'rule' => 'notBlank',
+			'message' => 'このフィールドは入力必須です。'
+		)
 	);
 }

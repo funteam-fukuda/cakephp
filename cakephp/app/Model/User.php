@@ -15,19 +15,20 @@ class User extends AppModel {
 			'order' => ''
 		)
 	);
+
 	public $actsAs = array('Acl' => array('type' => 'requester'));
 
 	public $validate = array(
 		'username' => array(
 			'required' => array(
 				'rule' => 'notBlank',
-				'message' => 'A username is required'
+				'message' => 'このフィールドは入力必須です。'
 			)
 		),
 		'password' => array(
 			'required' => array(
 				'rule' => 'notBlank',
-				'message' => 'A password is required'
+				'message' => 'このフィールドは入力必須です。'
 			)
 		)
 	);

@@ -10,6 +10,15 @@ class Group extends AppModel {
 		return null;
 	}
 
+	public $validate = array(
+		'name' => array(
+			'required' => array(
+				'rule' => 'notBlank',
+				'message' => 'このフィールドは入力必須です。'
+			)
+		)
+	);
+
 	public $hasMany = array(
 		'User' => array(
 			'className' => 'User',
