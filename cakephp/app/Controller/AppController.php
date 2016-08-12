@@ -87,5 +87,13 @@ class AppController extends Controller {
 
 		$login = $this->Auth->user();
         $this->set('login', $login);
+
+        if ($this->Session->read('errors')) {
+        	foreach ($this->Session->read('errors') as $model => $errors) {
+        		$this->loadModel($model);
+        		$this->$model->validationErrors = $errors;
+        	}
+        	$this->Session->delete('errors');
+        }
 	}
 }

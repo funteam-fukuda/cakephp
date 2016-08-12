@@ -13,12 +13,14 @@ class CommentsController extends AppController {
 	                'class' => 'alert-success'
 	            ));
 			} else {
+				$this->Session->write('errors.Comment', $this->Comment->validationErrors);
 				$this->Session->setFlash(__('コメントの投稿に失敗しました。'), 'alert', array(
 	            	'plugin' => 'BoostCake',
 	            	'class' => 'alert-danger'
 	            ));
 			}
-			return $this->redirect(array('controller' => 'posts', 'action' => 'view', $this->request->data['Comment']['post_id']));
+            return $this->redirect($this->referer());
+            //return $this->redirect(array('controller' => 'posts', 'action' => 'view', $this->request->data['Comment']['post_id']));
 		}
 	}
 
@@ -34,9 +36,9 @@ class CommentsController extends AppController {
             ));
 		} else {
 			$this->Session->setFlash(__('コメントの投稿に失敗しました。'), 'alert', array(
-            	'plugin' => 'BoostCake',
-            	'class' => 'alert-danger'
-            ));
+	        	'plugin' => 'BoostCake',
+	        	'class' => 'alert-danger'
+	        ));
 		}
 		return $this->redirect(array('controller' => 'posts', 'action' => 'view', $viewId));
 	}
