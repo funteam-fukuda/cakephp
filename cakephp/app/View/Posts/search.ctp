@@ -11,6 +11,10 @@
 		<?php echo (empty($post['User']['username'])) ? 'Unknown' : $post['User']['username']; ?>
 	</li>
 	<li>
+		Comment (<?php echo (count($post['Comment']) > 0) ? $this->Html->link(count($post['Comment']), array(
+		'controller' => 'posts', 'action' => 'view', $post['Post']['id'], '#' => 'com')) : 0; ?>)
+	</li>
+	<li>
 		Category : <?php echo $post['Category']['name']; ?>
 	</li>
 	<li>

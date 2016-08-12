@@ -1,10 +1,14 @@
 <?php foreach ($posts as $post): ?>
 <div class="content">
-<h3><?php echo $this->Html->link($post['Post']['title'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?></h3>
+<h3><?php echo $this->Html->link(h($post['Post']['title']), array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?></h3>
 <ul class="meta-list list-inline">
 	<li>
 		<span class="glyphicon glyphicon-user" aria-hidden="true"></span> 
-		<?php echo (empty($post['User']['username'])) ? 'Unknown' : $post['User']['username']; ?>
+		<?php echo (empty($post['User']['username'])) ? 'Unknown' : h($post['User']['username']); ?>
+	</li>
+	<li>
+		Comment (<?php echo (count($post['Comment']) > 0) ? $this->Html->link(count($post['Comment']), array(
+		'controller' => 'posts', 'action' => 'view', $post['Post']['id'], '#' => 'com')) : 0; ?>)
 	</li>
 	<?php if (!is_null($login)): ?>
 	<li>
@@ -15,19 +19,19 @@
 	</li>
 	<?php endif; ?>
 	<li>
-		Category : <?php echo $post['Category']['name']; ?>
+		Category : <?php echo h($post['Category']['name']); ?>
 	</li>
 	<li>
 		Tag : 
 	<?php foreach ($post['Tag'] as $tag): ?>
-	<?php echo $tag['name']; ?>, 
+	<?php echo h($tag['name']); ?>, 
 	<?php endforeach; ?>
 	</li>
 	<li class="date">
 		<?php echo preg_replace('/ \d{2}:\d{2}:\d{2}/', '', $post['Post']['created']); ?>
 	</li>
 </ul>
-<?php echo mb_strimwidth($post['Post']['body'], 0, 300, '...', 'utf-8'); ?>
+<?php echo mb_strimwidth(h($post['Post']['body']), 0, 300, '...', 'utf-8'); ?>
 </div><!-- content -->
 <?php endforeach; ?>
 

@@ -377,3 +377,21 @@ div.view-imgwrap {
 }
 
 /* error msg End */
+
+/* comment */
+
+.ul-comment {
+	margin: 0;
+	padding: 0;
+	margin-left: 5px;
+}
+
+.ul-comment li {
+	list-style-type: none;
+}
+
+dd.comment-body {
+	margin-top: 5px;
+}
+
+/* comment End */

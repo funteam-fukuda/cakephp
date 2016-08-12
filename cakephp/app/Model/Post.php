@@ -71,6 +71,10 @@ class Post extends AppModel	{
 		'Attachment' => array(
 			'className' => 'Attachment',
 			'foreignKey' => 'post_id'
+		),
+		'Comment' => array(
+			'className' => 'Comment',
+			'foreignKey' => 'post_id'
 		)
 	);
 
