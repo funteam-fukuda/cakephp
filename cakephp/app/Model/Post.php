@@ -32,7 +32,8 @@ class Post extends AppModel	{
 
 	public function post_pagenate() {
 		$option = array(
-			'limit' => 3
+			'limit' => 3,
+			'order' => array('created' => 'desc')
 		);
 		return $option;
 	}

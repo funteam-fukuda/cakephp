@@ -28,7 +28,7 @@ if (!empty($tag_error)) {
 <div class="upitem">
 <input id="lefile1" type="file" style="display:none">
 <div class="input-group">
-<input type="text" id="photoCover" class="form-control upimg1" placeholder="select file...">
+<input type="text" id="photoCover1" class="form-control upimg1" placeholder="select file...">
 <span class="input-group-btn"><button type="button" class="btn btn-info" onclick="$('input&#91;id=lefile1&#93;').click();">
 <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 </button></span>
@@ -37,14 +37,14 @@ if (!empty($tag_error)) {
 
 <script>
   $('input[id=lefile1]').change(function() {
-    $('#photoCover').val($(this).val());
+    $('#photoCover1').val($(this).val());
   });
 </script>
 
 <div class="upitem">
 <input id="lefile2" type="file" style="display:none">
 <div class="input-group">
-<input type="text" id="photoCover" class="form-control upimg2" placeholder="select file...">
+<input type="text" id="photoCover2" class="form-control upimg2" placeholder="select file...">
 <span class="input-group-btn"><button type="button" class="btn btn-info" onclick="$('input&#91;id=lefile2&#93;').click();">
 <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 </button></span>
@@ -53,14 +53,14 @@ if (!empty($tag_error)) {
 
 <script>
   $('input[id=lefile2]').change(function() {
-    $('#photoCover').val($(this).val());
+    $('#photoCover2').val($(this).val());
   });
 </script>
 
 <div class="upitem">
 <input id="lefile3" type="file" style="display:none">
 <div class="input-group">
-<input type="text" id="photoCover" class="form-control upimg3" placeholder="select file...">
+<input type="text" id="photoCover3" class="form-control upimg3" placeholder="select file...">
 <span class="input-group-btn"><button type="button" class="btn btn-info" onclick="$('input&#91;id=lefile3&#93;').click();">
 <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 </button></span>
@@ -69,7 +69,7 @@ if (!empty($tag_error)) {
 
 <script>
   $('input[id=lefile3]').change(function() {
-    $('#photoCover').val($(this).val());
+    $('#photoCover3').val($(this).val());
   });
 </script>
 

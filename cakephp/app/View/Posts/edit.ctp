@@ -38,12 +38,18 @@ echo '<div id="addimg"></div>';
 <div class="upitem">
 <input id="lefile1" type="file" style="display:none">
 <div class="input-group">
-<input type="text" id="photoCover" class="form-control upimg1" placeholder="select file...">
+<input type="text" id="photoCover1" class="form-control upimg1" placeholder="select file...">
 <span class="input-group-btn"><button type="button" class="btn btn-info" onclick="$('input&#91;id=lefile1&#93;').click();">
 <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 </button></span>
 </div>
 </div><!-- upitem -->
+
+<script>
+  $('input[id=lefile1]').change(function() {
+    $('#photoCover1').val($(this).val());
+  });
+</script>
 
 </div><!-- uploadform -->
 
