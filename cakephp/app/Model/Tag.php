@@ -26,8 +26,14 @@ class Tag extends AppModel {
 
 	public $validate = array(
 		'name' => array(
-			'rule' => 'notBlank',
-			'message' => 'このフィールドは入力必須です。'
+			array(
+				'rule' => 'notBlank',
+				'message' => 'このフィールドは入力必須です。'
+			),
+			array(
+				'rule' => 'isUnique',
+				'message' => 'このタグは既に存在しています。'
+			)
 		)
 	);
 }

@@ -1,3 +1,12 @@
+<div id="post-sort">
+	<ul class="list-inline">
+		<li><span>並び替え:</span></li>
+		<li><?php echo $this->Paginator->sort('created', '投稿日'); ?></li>
+		<li><?php echo $this->Paginator->sort('modified', '更新日'); ?></li>
+		<li><?php echo $this->Paginator->sort('user_id', 'ユーザー'); ?></li>
+	</ul>
+</div>
+
 <?php foreach ($posts as $post): ?>
 <div class="content">
 <h3><?php echo $this->Html->link(h($post['Post']['title']), array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?></h3>

@@ -10,6 +10,8 @@
 		echo $this->Form->input('password', array(
 			'class' => 'form-control',
 			'div' => 'form-group'));
+		echo $this->Form->input('password_confirm', array(
+			'class' => 'form-control', 'div' => 'form-group', 'label' => 'パスワード(再入力)', 'type' => 'password'));
 		echo $this->Form->input('group_id', array(
 			'class' => 'form-control',
 			'div' => 'form-group'));

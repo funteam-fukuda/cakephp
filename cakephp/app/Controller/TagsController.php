@@ -7,30 +7,40 @@ class TagsController extends AppController {
 	public $components = array('Paginator');
 
 	public function index() {
+
 		$this->set('tags', $this->Paginator->paginate());
 
-		if ($this->request->is('post')) {
-			$result = $this->Tag->find('first', array(
-				'conditions' => array('name' => $this->request->data['Tag']['name'])));
-			if (empty($result)) {
-				if ($this->Tag->save($this->request->data)) {
-		            $this->Session->setFlash(__('success!'), 'alert', array(
-		                'plugin' => 'BoostCake',
-		                'class' => 'alert-success'
-		            ));
-					return $this->redirect(array('action' => 'index'));
+		if ($this->request->is(array('post', 'put'))) {
+			// validation
+			foreach ($this->request->data['Tag'] as $key => $value) {
+				$this->Tag->set(array('Tag' => $value));
+
+				if (!$this->Tag->validates()) {
+					$errors = $this->Tag->validationErrors;
+					foreach ($errors as $field => $error) {
+						$out[$key][$field] = $error[0];
+					}
+					$flag = true;
 				}
-	            $this->Session->setFlash(__('error!'), 'alert', array(
-	                'plugin' => 'BoostCake',
-	                'class' => 'alert-danger'
-	            ));
-			} else {
-	            $this->Session->setFlash(__('既に使用されている名前です。'), 'alert', array(
-	                'plugin' => 'BoostCake',
-	                'class' => 'alert-danger'
-	            ));
-	            return $this->redirect(array('action' => 'index'));
 			}
+			// set error msg
+			if (isset($flag)) {
+				unset($out['id']);
+				$this->set('out', $out);
+			}
+
+			if ($this->Tag->save($this->request->data)) {
+	            $this->Session->setFlash(__('success!'), 'alert', array(
+	                'plugin' => 'BoostCake',
+	                'class' => 'alert-success'
+	            ));
+				return $this->redirect(array('action' => 'index'));
+			}
+
+            $this->Session->setFlash(__('error!'), 'alert', array(
+                'plugin' => 'BoostCake',
+                'class' => 'alert-danger'
+            ));
 		}
 	}
 
@@ -59,28 +69,28 @@ class TagsController extends AppController {
 		if ($this->request->is('get')) {
 			throw new MethodNotAllowedException();
 		}
-		if ($this->request->is('post')) {
-			$result = $this->Tag->find('first', array(
-				'conditions' => array('name' => $this->request->data['Tag']['name'])));
-			if (empty($result)) {
-				if ($this->Tag->save($this->request->data)) {
-		            $this->Session->setFlash(__('success!'), 'alert', array(
-		                'plugin' => 'BoostCake',
-		                'class' => 'alert-success'
-		            ));
-					return $this->redirect(array('action' => 'index'));
+
+		if ($this->request->is(array('post', 'put'))) {
+			// validation
+			foreach ($this->request->data['Tag'] as $key => $value) {
+				$this->Tag->set(array('Tag' => $value));
+				if (!$this->Tag->validates()) {
+					$this->Tag->validationErrors = array(0 => $this->Tag->validationErrors);
+					$this->Session->write('errors.Tag', $this->Tag->validationErrors);
 				}
-	            $this->Session->setFlash(__('error! ' . __line__ . 'line'), 'alert', array(
-	                'plugin' => 'BoostCake',
-	                'class' => 'alert-danger'
-	            ));
-			} else {
-	            $this->Session->setFlash(__('このタグは既に存在しています。'), 'alert', array(
-	                'plugin' => 'BoostCake',
-	                'class' => 'alert-danger'
-	            ));
-				$this->redirect(array('action' => 'index'));
 			}
+			if ($this->Tag->save($this->request->data)) {
+	            $this->Session->setFlash(__('success!'), 'alert', array(
+	                'plugin' => 'BoostCake',
+	                'class' => 'alert-success'
+	            ));
+				return $this->redirect(array('action' => 'index'));
+			}
+            $this->Session->setFlash(__('error! ' . __line__ . 'line'), 'alert', array(
+                'plugin' => 'BoostCake',
+                'class' => 'alert-danger'
+            ));
+            return $this->redirect($this->referer());
 		}
 	}
 }

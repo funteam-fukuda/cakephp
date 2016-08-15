@@ -245,14 +245,29 @@ form#PostAddForm div.checkbox label {
 
 /* tags */
 
-#TagAddForm input#TagName {
+#TagAddForm input#Tag0Name {
 	width: 600px;
 	margin: 0 5px 0 25px;
 }
 
-#TagIndexForm input#TagName {
+#TagIndexForm input.edit-tag {
 	width: 450px;
 	margin: 0 5px 0 20px;
+}
+
+p#errmsg {
+	color: #A94442;
+	margin-top: 5px;
+}
+
+input.test {
+	position: absolute;
+	top: 54px;
+	right: 65px;
+}
+
+#TagAddForm span.text-danger {
+	color: #A94442;
 }
 
 /* tags End */
@@ -351,6 +366,19 @@ div.content h3 a:hover {
 div.content h3 a:active {
 	color: #333;
 }
+
+div#post-sort {
+	padding-bottom: 5px;
+	font-size: 12px;
+	text-align: right;
+	display: inline;
+	background: #ccc;
+}
+
+div#post-sort li {
+	padding-left: -5px;
+}
+
 /* index End */
 
 /* view */

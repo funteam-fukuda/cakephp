@@ -12,15 +12,18 @@ echo $this->Form->create('Tag', array(
 	),
 	'inputDefaults' => array(
 		'div' => 'form-group',
-		'class' => 'form-control'
+		'class' => 'form-control',
+		'wrapInput' => false
 	),
-	'class' => 'form-inline'
+	'class' => 'form-inline',
+	'novalidate' => true
 ));
-echo $this->Form->input('name', array('label' => false, 'class' => 'form-control')); 
-echo $this->Form->submit('Add', array(
-	'class' => 'btn btn-primary',
-	'div' => false));
-echo $this->Form->end();
+echo $this->Form->input('Tag.0.name', array('label' => false, 'class' => 'form-control', 'div' => false)); 
+$options = array(
+	'label' => 'Add',
+	'div' => 'form-group',
+	'class' => 'btn btn-primary test');
+echo $this->Form->end($options);
 ?>
 </div><!-- panel-body -->
 </div><!-- panel-default -->
@@ -31,7 +34,7 @@ echo $this->Form->end();
 <th>Name</th>
 <th>Delete</th>
 </tr>
-<?php foreach($tags as $tag): ?>
+<?php $i=1; foreach($tags as $tag): ?>
 <tr>
 <td><?php echo $tag['Tag']['id']; ?></td>
 <td>
@@ -41,11 +44,13 @@ echo $this->Form->create('Tag', array(
 		'div' => 'form-group',
 		'class' => 'form-control'
 	),
-	'class' => 'form-inline'
+	'class' => 'form-inline',
+	'novalidate' => true
 	));
-echo $this->Form->input('name', array(
+echo $this->Form->input('Tag.' . $i . '.name', array(
 	'label' => false,
-	'class' => 'form-control',
+	'class' => 'form-control edit-tag',
+	'div' => 'form-group',
 	'default' => $tag['Tag']['name']));
 echo $this->Form->hidden('Tag.id', array(
 	'value' => $tag['Tag']['id']));
@@ -54,9 +59,10 @@ $options = array(
 	'div' => false,
 	'class' => 'btn btn-primary');
 echo $this->Form->end($options);
+if (!empty(@$out)) echo '<p id="errmsg">' . @$out[$i]['name'] . '</p>';
 ?>
 </td>
 <td><?php echo $this->Form->postLink('Delete', array('action' => 'delete', $tag['Tag']['id']), array('class' => 'btn btn-danger'), array('confirm' => '削除しても良いですか？')); ?></td>
 </tr>
-<?php endforeach; ?>
+<?php $i++; endforeach; ?>
 </table>

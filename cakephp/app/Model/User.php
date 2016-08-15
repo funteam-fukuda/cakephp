@@ -20,18 +20,46 @@ class User extends AppModel {
 
 	public $validate = array(
 		'username' => array(
-			'required' => array(
-				'rule' => 'notBlank',
-				'message' => 'このフィールドは入力必須です。'
+			array(
+				'rule' => array('notBlank'),
+				'message' => 'このフィールドは入力必須です。',
+			),
+			array(
+				'rule' => array('between', 4, 8),
+				'message' => '4文字以上、8文字以下で入力して下さい。',
+				'last' => true
 			)
 		),
 		'password' => array(
-			'required' => array(
+			array(
 				'rule' => 'notBlank',
 				'message' => 'このフィールドは入力必須です。'
+			),
+			array(
+				'rule' => array('between', 6, 12),
+				'message' => '6文字以上、12文字以下で入力して下さい。',
+				'last' => true
+			)
+		),
+		'password_confirm' => array(
+			array(
+				'rule' => 'notBlank',
+				'message' => 'このフィールドは入力必須です。'
+			),
+			'compare' => array(
+				'rule' => array('password_match', 'password'),
+				'message' => 'パスワードが一致しません'
+			),
+			'length' => array(
+				'rule' => array('between', 6, 12),
+				'message' => '6文字以上、12文字以下で入力して下さい。'
 			)
 		)
 	);
+
+	public function password_match($field, $password) {
+		return ($field['password_confirm'] === $this->data[$this->name][$password]);
+	}
 
 	public function parentNode() {
 		if (!$this->id && empty($this->data)) {

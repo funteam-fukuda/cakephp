@@ -9,11 +9,10 @@ class PostsController extends AppController {
     // URLフォーマットやSQLに渡す検索条件を構成する処理？
     public $presetVars = true;
 
-    public $uses = array('Post', 'Category', 'PostalCode', 'Attachment', 'Tag');
+    public $uses = array('Post', 'PostalCode', 'Attachment');
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow();
     }
 
     public function index() {        
@@ -35,12 +34,12 @@ class PostsController extends AppController {
 
     public function add() {
         
+        $this->loadModel('Category', 'Tag');
+
         // add to categories table
-        $this->loadModel('Category');
         $this->set('posts', $this->Category->find('list', array('fields' => 'Category.name')));
 
         // tag
-        $this->loadModel('Tag');
         $this->set('tag', $this->Tag->find('list'));
 
     	if ($this->request->is('post')) {
@@ -66,6 +65,9 @@ class PostsController extends AppController {
     }
 
     public function edit($id = null) {
+
+        $this->loadModel('Category', 'Tag');
+
     	if (!$id) {
     		throw new NotFoundException(__('Invalid post' . __line__ . 'line..'));
     	}
@@ -84,11 +86,9 @@ class PostsController extends AppController {
         $this->set('uploads', $this->Post->findById($id));
 
         // add to categories table
-        $this->loadModel('Category');
         $this->set('posts', $this->Category->find('list', array('fields' => 'Category.name')));
 
         // tag
-        $this->loadModel('Tag');
         $this->set('tag', $this->Tag->find('list'));
 
     	if ($this->request->is(array('post', 'put'))) {
