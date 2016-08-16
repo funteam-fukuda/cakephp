@@ -16,7 +16,7 @@ class PostsController extends AppController {
         $this->Auth->allow('index', 'view', 'search', 'zipcode');
     }
 
-    public function index() {        
+    public function index() {
         $this->paginate = $this->Post->post_pagenate();
         $this->set('posts', $this->paginate());
     }

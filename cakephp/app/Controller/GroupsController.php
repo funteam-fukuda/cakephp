@@ -31,7 +31,7 @@ class GroupsController extends AppController {
                 'plugin' => 'BoostCake',
                 'class' => 'alert-danger'
             ));
-            return $this->redirect(array('action' => 'index'));
+            return $this->redirect(array('action' => 'add'));
 		}
 	}
 

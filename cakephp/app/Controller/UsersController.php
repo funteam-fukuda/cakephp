@@ -4,7 +4,7 @@ App::uses('AppController', 'Controller');
 
 class UsersController extends AppController {
 
-	public $components = array('Paginator');
+	public $components = array('Paginator', 'Permission');
 
 	// ページにアクセスする前に実行される。ユーザー権限の検査など
 	public function beforeFilter() {
@@ -17,6 +17,8 @@ class UsersController extends AppController {
     public function login() {
         if ($this->request->is('post')) {
             if ($this->Auth->login()) {
+            	// 権限がない人にリンクを表示させない
+            	$this->Permission->init();
                 $this->redirect($this->Auth->redirect());
             } else {
 	            $this->Session->setFlash(__('Invalid username or password, try again'), 'alert', array(

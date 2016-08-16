@@ -59,7 +59,7 @@ echo $this->Form->end($options);
 if (!empty(@$out)) echo '<p id="errmsg">' . @$out[$i]['name'] . '</p>';
 ?>
 </td>
-<td><?php echo $this->Form->postLink('Delete', array('action' => 'delete', $category['Category']['id']), array('class' => 'btn btn-danger'), array('confirm' => '削除しても良いですか？')); ?></td>
+<td><?php echo $this->Form->postLink('Delete', array('action' => 'delete', $category['Category']['id']), array('class' => 'btn btn-danger'), '削除しても良いですか？'); ?></td>
 </tr>
 <?php $i++; endforeach; ?>
 </table>

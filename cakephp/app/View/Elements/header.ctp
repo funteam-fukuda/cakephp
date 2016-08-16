@@ -7,36 +7,36 @@
 	</li>
 	<?php if (!is_null($login)): ?>
 	<li>
-	<?php echo $this->Html->link(
-	'AddPost', array('controller' => 'posts', 'action' => 'add'));
-	?>
-	</li>
-	<?php endif; ?>
-	<li>
-	<?php if (!is_null($login)): ?>
-	<?php echo $this->Html->link(
-	'User', array('controller' => 'users', 'action' => 'index'));
+	<?php echo $this->Html->link(__('AddPost'), array(
+		'controller' => 'posts', 'action' => 'add'));
 	?>
 	</li>
 	<?php endif; ?>
 	<?php if (!is_null($login)): ?>
 	<li>
-	<?php echo $this->Html->link(
-	'Group', array('controller' => 'groups', 'action' => 'index'));
+	<?php echo $this->MyHtml->link(__('User'), array(
+		'controller' => 'users', 'action' => 'index'));
 	?>
 	</li>
 	<?php endif; ?>
 	<?php if (!is_null($login)): ?>
 	<li>
-	<?php echo $this->Html->link(
-	'Tag', array('controller' => 'tags', 'action' => 'index'));
+	<?php echo $this->MyHtml->link(__('Group'), array(
+		'controller' => 'groups', 'action' => 'index'));
 	?>
 	</li>
 	<?php endif; ?>
 	<?php if (!is_null($login)): ?>
 	<li>
-	<?php echo $this->Html->link(
-	'Category', array('controller' => 'categories', 'action' => 'index'));
+	<?php echo $this->MyHtml->link(__('Tag'), array(
+		'controller' => 'tags', 'action' => 'index'));
+	?>
+	</li>
+	<?php endif; ?>
+	<?php if (!is_null($login)): ?>
+	<li>
+	<?php echo $this->MyHtml->link(__('Category'), array(
+		'controller' => 'categories', 'action' => 'index'));
 	?>
 	</li>
 	<?php endif; ?>
@@ -53,6 +53,12 @@
 	'Logout', array('controller' => 'users', 'action' => 'logout'));
 	?>
 	</li>
+	<?php endif; ?>
+
+	<?php if (!is_null($login)): ?>
+		<li style="color:#9d9d9d;position:absolute;top:15px;right:10px;">
+			<?php echo 'こんにちは、' . $login['username'] . 'さん!'; ?>
+		</li>
 	<?php endif; ?>
 	</ul>
 </nav>
