@@ -1,3 +1,5 @@
+<?php $this->Html->addCrumb('Post'); ?>
+
 <div id="post-sort">
 	<ul class="list-inline">
 		<li><span>並び替え:</span></li>

@@ -1,3 +1,8 @@
+<?php
+$this->Html->addCrumb('User', '/users');
+$this->Html->addCrumb('Add User');
+?>
+
 <div class="users form">
 <?php echo $this->Form->create('User', array(
 	'class' => 'form-group', 'novalidate' => true)); ?>

@@ -1,4 +1,7 @@
-<?php $this->Html->addCrumb('Search'); ?>
+<?php
+$this->Html->addCrumb('Post', '/');
+$this->Html->addCrumb('Search');
+?>
 
 <p>検索結果は<?php echo (!empty($posts)) ? count($posts) : 0; ?>件です。</p>
 <?php if(!empty($posts)): ?>

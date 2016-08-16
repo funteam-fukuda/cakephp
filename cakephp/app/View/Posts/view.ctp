@@ -1,4 +1,7 @@
-<?php $this->Html->addCrumb('View'); ?>
+<?php
+$this->Html->addCrumb('Post', '/');
+$this->Html->addCrumb(h($post['Post']['title']));
+?>
 
 <div class="content">
 <h3 class="view_h3"><?php echo h($post['Post']['title']); ?></h3>

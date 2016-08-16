@@ -1,7 +1,10 @@
 <?php echo $this->Html->script('addformdata.js'); ?>
 <div id="editwrap">
 
-<?php $this->Html->addCrumb('Edit'); ?>
+<?php
+$this->Html->addCrumb('Posts', '/');
+$this->Html->addCrumb('Edit');
+?>
 
 <h1>Edit Post</h1>
 <?php

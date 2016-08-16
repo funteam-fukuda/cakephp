@@ -1,4 +1,8 @@
-<?php $this->Html->addCrumb('User'); ?>
+<?php
+$this->Html->addCrumb('User', '/users');
+$this->Html->addCrumb('Edit User');
+?>
+
 <table class="table table-striped table-bordered">
 <tr>
 <th>Id</th>

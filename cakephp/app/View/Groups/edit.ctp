@@ -1,4 +1,7 @@
-<?php $this->Html->addCrumb('Group'); ?>
+<?php
+$this->Html->addCrumb('Group', '/groups');
+$this->Html->addCrumb('Edit Group');
+?>
 
 <table class="table table-striped table-bordered">
 <tr>

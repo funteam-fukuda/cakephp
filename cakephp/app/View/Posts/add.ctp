@@ -1,4 +1,7 @@
-<?php $this->Html->addCrumb('Add'); ?>
+<?php
+$this->Html->addCrumb('Post', '/');
+$this->Html->addCrumb('Add Post');
+?>
 
 <legend>Add Post</legend>
 <?php

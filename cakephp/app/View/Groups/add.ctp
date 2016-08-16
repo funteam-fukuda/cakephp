@@ -1,3 +1,7 @@
+<?php
+$this->Html->addCrumb('Group', '/groups');
+$this->Html->addCrumb('Add Group');
+?>
 
 <div class="groups form">
 <?php echo $this->Form->create('Group', array(
