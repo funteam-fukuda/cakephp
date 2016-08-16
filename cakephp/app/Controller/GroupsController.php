@@ -53,13 +53,13 @@ class GroupsController extends AppController {
 		                'class' => 'alert-danger'
 		            ));
 				}
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'edit'));
 			} else {
 	            $this->Session->setFlash(__('この名前は既に使用中です。'), 'alert', array(
 	                'plugin' => 'BoostCake',
 	                'class' => 'alert-danger'
 	            ));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'edit'));
 			}
 		}
 	}

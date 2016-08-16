@@ -231,14 +231,20 @@ form#PostAddForm div.checkbox label {
 
 /* categories */
 
-#CategoryAddForm input#CategoryName {
+#CategoryAddForm input#Category0Name {
 	width: 600px;
 	margin: 0 5px 0 25px;
 }
 
-#CategoryIndexForm input#CategoryName {
+#CategoryIndexForm input.edit-cate {
 	width: 450px;
 	margin: 0 5px 0 20px;
+}
+
+input.cate_addbtn {
+	position: absolute;
+	top: 54px;
+	right: 65px;
 }
 
 /* categories End */
@@ -260,7 +266,7 @@ p#errmsg {
 	margin-top: 5px;
 }
 
-input.test {
+input.tag_addbtn {
 	position: absolute;
 	top: 54px;
 	right: 65px;

@@ -16,8 +16,9 @@
 		<?php echo (empty($post['User']['username'])) ? 'Unknown' : h($post['User']['username']); ?>
 	</li>
 	<li>
-		Comment (<?php echo (count($post['Comment']) > 0) ? $this->Html->link(count($post['Comment']), array(
-		'controller' => 'posts', 'action' => 'view', $post['Post']['id'], '#' => 'com')) : 0; ?>)
+		<span class="glyphicon glyphicon-comment" aria-hidden="true"></span> 
+		<?php echo (count($post['Comment']) > 0) ? $this->Html->link('Comment(' . count($post['Comment']) . ')', array(
+		'controller' => 'posts', 'action' => 'view', $post['Post']['id'], '#' => 'com')) : 'Comment(0)'; ?>
 	</li>
 	<?php if (!is_null($login)): ?>
 	<li>

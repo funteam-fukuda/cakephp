@@ -64,23 +64,6 @@ class UsersController extends AppController {
 		$this->set(compact('groups'));
 	}
 
-	/*public function edit($id = null) {
-		$this->User->id = $id;
-		if (!$this->User->exists()) {
-			throw new NotFoundException(__('Invalid user'));
-		}
-		if ($this->requeset->is('post') || $this->request->is('put')) {
-			if ($this->User->save($this->request->data)) {
-				$this->Flash->success(__('The user has been saved'));
-				return $this->redirect(array('action' => 'index'));
-			}
-			$this->Flash->error(__('The user could not be saved. Please, try again.'));
-		} else {
-			$this->request->data = $this->User->findById($id);
-			unset($this->request->data['User']['password']);
-		}
-	}*/
-
 	public function edit() {
 		$this->set('users', $this->Paginator->paginate());
 		if ($this->request->is('post')) {
@@ -98,6 +81,7 @@ class UsersController extends AppController {
 		                'plugin' => 'BoostCake',
 		                'class' => 'alert-danger'
 		            ));
+		            $this->redirect(array('action' => 'edit'));
 				}
 				$this->redirect(array('action' => 'index'));
 			} else {
@@ -105,6 +89,7 @@ class UsersController extends AppController {
 	                'plugin' => 'BoostCake',
 	                'class' => 'alert-danger'
 	            ));
+	            $this->redirect(array('action' => 'edit'));
 			}
 		}
 	}

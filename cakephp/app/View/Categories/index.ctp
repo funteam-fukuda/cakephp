@@ -17,9 +17,9 @@ echo $this->Form->create('Category', array(
 	'class' => 'form-inline',
 	'novalidate' => true
 ));
-echo $this->Form->input('name', array('label' => false, 'class' => 'form-control')); 
+echo $this->Form->input('Category.0.name', array('label' => false, 'class' => 'form-control')); 
 echo $this->Form->submit('Add', array(
-	'class' => 'btn btn-primary',
+	'class' => 'btn btn-primary cate_addbtn',
 	'div' => false));
 echo $this->Form->end();
 ?>
@@ -32,7 +32,7 @@ echo $this->Form->end();
 <th>Name</th>
 <th>Delete</th>
 </tr>
-<?php foreach($categories as $category): ?>
+<?php $i=1; foreach($categories as $category): ?>
 <tr>
 <td><?php echo $category['Category']['id']; ?></td>
 <td>
@@ -45,9 +45,9 @@ echo $this->Form->create('Category', array(
 	'class' => 'form-inline',
 	'novalidate' => true
 	));
-echo $this->Form->input('name', array(
+echo $this->Form->input('Category.' . $i . '.name', array(
 	'label' => false,
-	'class' => 'form-control',
+	'class' => 'form-control edit-cate',
 	'default' => $category['Category']['name']));
 echo $this->Form->hidden('Category.id', array(
 	'value' => $category['Category']['id']));
@@ -56,9 +56,10 @@ $options = array(
 	'div' => false,
 	'class' => 'btn btn-primary');
 echo $this->Form->end($options);
+if (!empty(@$out)) echo '<p id="errmsg">' . @$out[$i]['name'] . '</p>';
 ?>
 </td>
 <td><?php echo $this->Form->postLink('Delete', array('action' => 'delete', $category['Category']['id']), array('class' => 'btn btn-danger'), array('confirm' => '削除しても良いですか？')); ?></td>
 </tr>
-<?php endforeach; ?>
+<?php $i++; endforeach; ?>
 </table>

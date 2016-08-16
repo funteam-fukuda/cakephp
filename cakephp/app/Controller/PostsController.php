@@ -162,7 +162,6 @@ class PostsController extends AppController {
     }
 
     public function search() {
-
         // 深度
         #$this->Post->recursive = 2;
         // 検索条件データのハンドリング
@@ -171,7 +170,6 @@ class PostsController extends AppController {
 
         // parsedParamsをparseCriteria()に渡すことで、ModelのfilterArgsの定義に従ってwhere条件が構成され、検索が行われる
         $conditions = $this->Post->parseCriteria($this->Prg->parsedParams());
-
         if (!empty($conditions)) {
             $this->set('posts', $this->paginate(array(
                 $conditions

@@ -22,13 +22,13 @@ class Category extends AppModel {
 
 	public $validate = array(
 		'name' => array(
-			'rule1' => array(
+			array(
 				'rule' => 'notBlank',
 				'message' => 'このフィールドは入力必須です。'
 			),
-			'rule2' => array(
+			array(
 				'rule' => 'isunique',
-				'message' => '既にこのカテゴリは存在します。'
+				'message' => 'このカテゴリは既に存在しています。'
 			)
 		)
 	);

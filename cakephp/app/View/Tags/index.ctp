@@ -22,7 +22,7 @@ echo $this->Form->input('Tag.0.name', array('label' => false, 'class' => 'form-c
 $options = array(
 	'label' => 'Add',
 	'div' => 'form-group',
-	'class' => 'btn btn-primary test');
+	'class' => 'btn btn-primary tag_addbtn');
 echo $this->Form->end($options);
 ?>
 </div><!-- panel-body -->

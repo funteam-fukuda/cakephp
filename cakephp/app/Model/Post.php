@@ -21,40 +21,6 @@ class Post extends AppModel	{
 		)
 	);
 
-	function beforeValidate($options = array()) {
-	    foreach ($this->hasAndBelongsToMany as $k => $v) {
-	        if (isset($this->data[$k][$k])) {
-	            $this->data[$this->alias][$k] = $this->data[$k][$k];
-	        }
-	    }
-	    return true;
-	}
-
-	public function post_pagenate() {
-		$option = array(
-			'limit' => 3,
-			'order' => array('created' => 'desc')
-		);
-		return $option;
-	}
-
-	/*
-	public function beforeSave($options = array()) {
-		debug($this->data);
-		$attach_cnt = count($this->data['Attachment']);
-		for ($i=0;$i<$attach_cnt;$i++) {
-			if ($this->data['Attachment'][$i]['Attachment']['photo']['error'] == 4) {
-				unset($this->data['Attachment'][$i]);
-			}
-		}
-		debug($this->data);
-		return true;
-	}*/
-
-	public function isOwnedBy($post, $user) {
-		return $this->field('id', array('id' => $post, 'user_id' => $user)) != false;
-	}
-
 	// category
 	// postsは外部キーを含むので、usersに属している
 	public $belongsTo = array(
@@ -81,6 +47,7 @@ class Post extends AppModel	{
 
 	// tag
 	public $name = 'Post';
+
 	public $hasAndBelongsToMany = array(
 		'Tag' =>
 			array(
@@ -129,11 +96,44 @@ class Post extends AppModel	{
 			)
 		);
 
-		if (empty($query)) {
-			return;
-		}
+		if (empty($query)) return;
 
 		$post_id = implode(',', $query);
 		return $post_id;
 	}
+
+	function beforeValidate($options = array()) {
+	    foreach ($this->hasAndBelongsToMany as $k => $v) {
+	        if (isset($this->data[$k][$k])) {
+	            $this->data[$this->alias][$k] = $this->data[$k][$k];
+	        }
+	    }
+	    return true;
+	}
+
+	public function post_pagenate() {
+		$option = array(
+			'limit' => 3,
+			'order' => array('created' => 'desc')
+		);
+		return $option;
+	}
+
+	/*
+	public function beforeSave($options = array()) {
+		debug($this->data);
+		$attach_cnt = count($this->data['Attachment']);
+		for ($i=0;$i<$attach_cnt;$i++) {
+			if ($this->data['Attachment'][$i]['Attachment']['photo']['error'] == 4) {
+				unset($this->data['Attachment'][$i]);
+			}
+		}
+		debug($this->data);
+		return true;
+	}*/
+
+	public function isOwnedBy($post, $user) {
+		return $this->field('id', array('id' => $post, 'user_id' => $user)) != false;
+	}
+
 }
