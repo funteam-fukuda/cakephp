@@ -41,7 +41,8 @@ class Post extends AppModel	{
 		),
 		'Comment' => array(
 			'className' => 'Comment',
-			'foreignKey' => 'post_id'
+			'foreignKey' => 'post_id',
+			'dependent' => true
 		)
 	);
 

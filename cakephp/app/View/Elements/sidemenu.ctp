@@ -78,3 +78,25 @@ echo $this->Form->end();
 <?php endforeach; ?>
 </div><!-- panel-body -->
 </div><!-- panel -->
+
+<div class="panel panel-default">
+<div class="panel-heading">
+<h3 class="panel-title">Recent Comments</h3>
+</div>
+<div class="panel-body">
+<div id="recent_comments">
+<ul>
+<?php foreach($resent_comments as $key => $val): ?>
+	<li>
+		<dl>
+			<dt><?php echo h($val['Comment']['commenter']); ?> 
+<span class="recent-title"> on <?php echo $this->Html->link(h($val['Post']['title']), array('controller' => 'posts', 'action' => 'view', $val['Post']['id'])); ?> - <span class="recente-create"><?php echo $this->Common->convert_to_fuzzy_time($val['Comment']['created']); ?></span></span>
+			</dt>
+			<dd><?php echo mb_strimwidth(h($val['Comment']['body']), 0, 100, '...', 'utf-8'); ?></dd>
+		</dl>
+	</li>
+<?php endforeach; ?>
+</ul>
+</div><!-- recent_comments -->
+</div><!-- panel-body -->
+</div><!-- panel -->

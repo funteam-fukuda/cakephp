@@ -429,3 +429,24 @@ dd.comment-body {
 }
 
 /* comment End */
+
+/* sidemenu */
+
+div#recent_comments ul {
+	margin: 0;
+	padding: 0;
+}
+
+div#recent_comments li {
+	list-style-type: none;
+}
+
+span.recent-title {
+	font-weight: normal;
+}
+
+span.recente-create {
+	font-size: 12px;
+}
+
+/* sidemenu End */

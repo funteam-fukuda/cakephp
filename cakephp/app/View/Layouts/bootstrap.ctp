@@ -53,11 +53,11 @@
 			<?php echo $this->element('breadcrumbs'); ?>
 
 			<?php echo $this->Session->flash(); ?>
-			
+
 			<div class="col-lg-8">
 				<?php echo $this->fetch('content'); ?>
 			</div><!-- end col-lg-8 -->
-			
+
 			<div class="col-lg-4">
 				<?php echo $this->element('sidemenu'); ?>
 			</div><!-- end col-lg-4 -->

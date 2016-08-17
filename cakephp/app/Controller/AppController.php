@@ -56,10 +56,11 @@ class AppController extends Controller {
 				'Actions' => array('actionPath' => 'controllers')
 			)
 		),
-		'Session'
+		'Session',
+		'Common'
 	);
 
-	public $uses = array('Post', 'Category', 'Tag');
+	public $uses = array('Post', 'Category', 'Tag', 'Comment');
 
 	public function beforeFilter() {
 		
@@ -84,6 +85,12 @@ class AppController extends Controller {
         $this->set('head_tags', $this->Tag->find('list'));
         // search categories
         $this->set('head_categories', $this->Category->find('list'));
+        // recent comments
+        $this->set('resent_comments', $this->Comment->find('all', array(
+        	'order' => array('Comment.created' => 'desc'),
+        	'limit' => 5
+        	)
+        ));
 
 		$login = $this->Auth->user();
         $this->set('login', $login);
