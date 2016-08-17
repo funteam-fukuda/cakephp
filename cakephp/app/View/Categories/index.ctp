@@ -54,7 +54,7 @@ echo $this->Form->hidden('Category.id', array(
 $options = array(
 	'label' => 'Edit',
 	'div' => false,
-	'class' => 'btn btn-primary');
+	'class' => 'btn btn-success');
 echo $this->Form->end($options);
 if (!empty(@$out)) echo '<p id="errmsg">' . @$out[$i]['name'] . '</p>';
 ?>

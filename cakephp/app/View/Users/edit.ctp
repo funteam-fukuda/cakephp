@@ -33,13 +33,13 @@ echo $this->Form->hidden('User.id', array(
 $options = array(
 	'label' => 'Edit',
 	'div' => false,
-	'class' => 'btn btn-primary');
+	'class' => 'btn btn-success');
 echo $this->Form->end($options);
 ?>
 </td>
 <td><?php echo $user['User']['created']; ?></td>
 <td>
-	<?php echo $this->Form->postLink('Delete', array('controller' => 'users', 'action' => 'delete', $user['User']['id']), array('class' => 'btn btn-danger'), array('confirm' => '削除しても良いですか？')); ?>
+	<?php echo $this->Form->postLink('Delete', array('controller' => 'users', 'action' => 'delete', $user['User']['id']), array('class' => 'btn btn-danger'), '削除しても良いですか？'); ?>
 </td>
 </tr>
 <?php endforeach; ?>

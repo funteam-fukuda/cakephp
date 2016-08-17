@@ -57,7 +57,7 @@ echo '</div>';
 			<?php echo $this->Form->postLink('削除',
 								 array('controller' => 'comments', 'action' => 'delete', $value['id'], $post['Post']['id']),
 								 array('class' => 'btn btn-danger btn-xs'),
-								 array('confirm' => 'Are you sure?')); ?>
+								 'このコメントを削除しても良いですか？'); ?>
 		</span>
 		<?php endif; ?>
 		</dt>

@@ -56,7 +56,7 @@ class PostsController extends AppController {
             
             // tagが2つ以上選択されていない場合のエラーメッセージを取得
             $errors = $this->Post->validationErrors;
-            if (!empty($errors)) $this->set('tag_error', $errors['Tag']);
+            if (!empty($errors['Tag'])) $this->set('tag_error', $errors['Tag']);
 
             $this->Session->setFlash(__('Unable to add your post.'), 'alert', array(
                 'plugin' => 'BoostCake',

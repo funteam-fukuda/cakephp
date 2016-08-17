@@ -31,13 +31,13 @@ $this->Html->addCrumb('Edit Group');
 	$options = array(
 		'label' => 'Edit',
 		'div' => false,
-		'class' => 'btn btn-primary');
+		'class' => 'btn btn-success');
 	echo $this->Form->end($options);
 	?>
 	</td>
 	<td><?php echo h($group['Group']['created']); ?></td>
 	<td>
-	<?php echo $this->Form->postLink('Delete', array('controller' => 'groups', 'action' => 'delete', $group['Group']['id']), array('class' => 'btn btn-danger'), array('confirm' => '削除しても良いですか？')); ?>
+	<?php echo $this->Form->postLink('Delete', array('controller' => 'groups', 'action' => 'delete', $group['Group']['id']), array('class' => 'btn btn-danger'), '削除しても良いですか？'); ?>
 	</td>
 </tr>
 <?php endforeach; ?>
