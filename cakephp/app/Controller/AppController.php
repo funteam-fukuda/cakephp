@@ -43,7 +43,7 @@ class AppController extends Controller {
 
 	public $components = 
 		array(
-		'DebugKit.Toolbar',
+		/*'DebugKit.Toolbar',*/
 		'Flash',
 		'Acl',
 		'Auth' => array(
