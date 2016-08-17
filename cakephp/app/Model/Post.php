@@ -75,7 +75,7 @@ class Post extends AppModel	{
 	// method: "expression", "subquery", "query"では必須
 	// type: value(int)=完全一致, like(string)=部分一致
 	public $filterArgs = array(
-		array('name' => 'title', 'type' => 'like'),
+		array('name' => 'search_title', 'field' => 'Post.title', 'type' => 'like'),
 		'tag' => array('type' => 'subquery', 'method' => 'searchTag', 'field' => 'Post.id'),
 		'category' => array('field' => 'Post.category_id', 'type' => 'value')
 	);

@@ -10,7 +10,7 @@
 		'novalidate' => true,
 		'url' => array_merge(array('action' => 'search'), $this->params['pass'])
 		));
-	echo $this->Form->input('Post.title', array('div' => 'form-group', 'class' => 'form-control'));
+	echo $this->Form->input('search_title', array('div' => 'form-group', 'class' => 'form-control'));
 	echo $this->Form->input('Post.category', array(
 		'type' => 'select',
 		'multiple' => 'checkbox',
