@@ -9,12 +9,11 @@
 
         echo $this->Html->meta('icon');
 
+        // Twitter Bootstrap 3.0 CDN
+        echo $this->Html->script('bootstrap.min.js');
         echo $this->Html->script('http://code.jquery.com/jquery-1.11.0.min.js');
         echo $this->Html->script('https://code.jquery.com/ui/1.10.3/jquery-ui.js');
-
-        // Twitter Bootstrap 3.0 CDN
         echo $this->Html->css('bootstrap.min.css');
-        echo $this->Html->script('bootstrap.min.js');
 
         echo $this->fetch('meta');
         echo $this->fetch('css');
