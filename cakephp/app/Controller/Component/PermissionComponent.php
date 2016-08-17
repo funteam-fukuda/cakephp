@@ -46,6 +46,6 @@ class PermissionComponent extends Component {
 	}
 
 	public function clear() {
-		$this->Session->delete('Auth.Peremissions');
+		$this->Session->delete('Auth.Permissions');
 	}
 }

@@ -30,7 +30,7 @@ class PostsController extends AppController {
     	if (!$post) {
     		throw new NotFoundException(__('Invalid post' . __line__ . 'line..'));
     	}
-    	$this->set('post', $post);
+    	$this->set(compact('post'));
     }
 
     public function add() {

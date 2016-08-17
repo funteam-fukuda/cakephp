@@ -72,8 +72,11 @@ echo $this->Form->create('Comment', array(
 	'url' => array('controller' => 'comments', 'action' => 'add'),
 	'novalidate' => true,
 	'class' => 'form-group'));
+$user = (!is_null($login)) ? $login['username'] : '';
 echo $this->Form->input('commenter', array(
-	'class' => 'form-control', 'div' => 'form-group', 'label' => '名前'));
+	'class' => 'form-control', 'div' => 'form-group', 'label' => '名前',
+	'default' => $user
+	));
 echo $this->Form->input('body', array(
 	'rows' => 3, 'class' => 'form-control', 'div' => 'form-group', 'label' => 'コメント'));
 echo $this->Form->hidden('post_id', array(
