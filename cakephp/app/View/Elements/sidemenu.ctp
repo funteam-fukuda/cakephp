@@ -86,10 +86,10 @@ echo $this->Form->end();
 <div class="panel-body">
 <div id="recent_comments">
 <ul>
-<?php foreach($resent_comments as $key => $val): ?>
+<?php foreach($recent_comments as $key => $val): ?>
 	<li>
 		<dl>
-			<dt><?php echo h($val['Comment']['commenter']); ?> 
+			<dt><span class="glyphicon glyphicon-user" aria-hidden="true"></span> <?php echo h($val['Comment']['commenter']); ?> 
 <span class="recent-title"> on <?php echo $this->Html->link(h($val['Post']['title']), array('controller' => 'posts', 'action' => 'view', $val['Post']['id'])); ?> - <span class="recente-create"><?php echo $this->Common->convert_to_fuzzy_time($val['Comment']['created']); ?></span></span>
 			</dt>
 			<dd><?php echo mb_strimwidth(h($val['Comment']['body']), 0, 100, '...', 'utf-8'); ?></dd>

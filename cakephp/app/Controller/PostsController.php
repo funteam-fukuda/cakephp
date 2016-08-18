@@ -192,4 +192,18 @@ class PostsController extends AppController {
         );
         return json_encode($result);
     }
+
+    public function recent_comments() {
+        $this->autoRender = false;
+        if (!$this->request->is('ajax')) {
+            throw new BadRequestException();
+        }
+
+        $result = $this->Comment->find('all', array(
+            'order' => array('Comment.created' => 'desc'),
+            'limit' => 4
+            )
+        );
+        return json_encode($result);
+    }
 }

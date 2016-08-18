@@ -62,7 +62,7 @@ echo '</div>';
 		<?php endif; ?>
 		</dt>
 		</li>
-		<li><dd class="comment-body"><?php echo h($value['body']); ?></dd></li>
+		<li><dd class="comment-body"><?php echo nl2br(h($value['body'])); ?></dd></li>
 		</dl>
 	</ul>
 <?php endforeach; ?>

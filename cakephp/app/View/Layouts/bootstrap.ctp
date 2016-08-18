@@ -10,9 +10,9 @@
         echo $this->Html->meta('icon');
 
         // Twitter Bootstrap 3.0 CDN
-        echo $this->Html->script('bootstrap.min.js');
         echo $this->Html->script('http://code.jquery.com/jquery-1.11.0.min.js');
         echo $this->Html->script('https://code.jquery.com/ui/1.10.3/jquery-ui.js');
+        echo $this->Html->script('bootstrap.min.js');
         echo $this->Html->css('bootstrap.min.css');
 
         echo $this->fetch('meta');
@@ -24,10 +24,11 @@
 <?php echo $this->Html->script('searchform.js'); ?>
 <?php echo $this->Html->script('slideshow.js'); ?>
 <?php echo $this->Html->script('zipcode.js'); ?>
+<!--<?php echo $this->Html->script('recent_comments.js'); ?>-->
 
-	<div id="con1" class="modal-contents">
+	<div id="modal-contents" class="panel panel-default">
+		<div id="navi"></div>
 		<div id="img-block"></div>
-		<p><a class="modal-close"></a></p>
 	</div>
 
 	<div class="navbar navbar-inverse navbar-fixed-top">

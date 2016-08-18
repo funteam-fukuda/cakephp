@@ -86,9 +86,9 @@ class AppController extends Controller {
         // search categories
         $this->set('head_categories', $this->Category->find('list'));
         // recent comments
-        $this->set('resent_comments', $this->Comment->find('all', array(
+        $this->set('recent_comments', $this->Comment->find('all', array(
         	'order' => array('Comment.created' => 'desc'),
-        	'limit' => 5
+        	'limit' => 4
         	)
         ));
 

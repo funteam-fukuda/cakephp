@@ -4,6 +4,11 @@ class CommentsController extends AppController {
 
 	public $helper = array('Html', 'Form', 'Flash');
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('add');
+	}
+
 	public function add($viewId) {
 		
 		if ($this->request->is('post')) {

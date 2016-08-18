@@ -1,91 +1,66 @@
 $(function() {
-    $('.modal-open').click(function(){
-        // オーバーレイ用の要素を追加
-        $('body').append('<div class="modal-overlay"></div>');
-        // オーバーレイをフェードイン
-        $('.modal-overlay').fadeIn('slow');
-        // モーダルコンテンツのIDを取得
-        var modal = '#' + $(this).attr('data-target');
-        // モーダルコンテンツの表示位置を設定
-        modalResize();
-         // モーダルコンテンツフェードイン
-        $(modal).fadeIn('slow');
-        // 「.modal-overlay」あるいは「.modal-close」をクリック
-        $('.modal-overlay, .modal-close').off().click(function(){
-            // モーダルコンテンツとオーバーレイをフェードアウト
-            $(modal).fadeOut('slow');
-            $('.modal-overlay').fadeOut('slow',function(){
-                // オーバーレイを削除
-                $('.modal-overlay').remove();
-            });
+
+    var current_id;
+    var item_cnt = $('.view-imgwrap img').length - 1;
+    
+    $('.modal-open').click(function() {
+        $('body').append('<div id="modal-overlay"></div>');
+        $('#modal-overlay').fadeIn('slow');
+
+        getclass = $(this).attr('class');
+        current_id = getclass.match(/([0-9]+)/)[0];
+        // show images
+        showImage();
+    });
+
+    $(document).on('click', '#next', function() {
+        current_id++;
+        showImage();
+    });
+
+    $(document).on('click', '#prev', function() {
+        current_id--;
+        showImage();
+    });
+
+    // delete modal-overlay, modal-contents
+    $(document).on('click', '#modal-overlay', function() {
+        $('#modal-contents, #modal-overlay').fadeOut('slow', function() {
+            $('#modal-overlay').remove();
         });
+    });
 
-        // リサイズしたら表示位置を再取得
-        $(window).on('resize', function(){
-            modalResize();
-        });
+    function showImage() {
+        img_src = $('.view-imgwrap img').eq(current_id).attr('src');
+        $('#modal-contents #img-block').empty().append('<img src="' + img_src + '" />');
+        centeringModalContents();
+        $('#modal-contents').fadeOut(0);
+        $('#modal-contents').fadeIn('slow');
 
-        // モーダルコンテンツの表示位置を設定する関数
-        function modalResize(){
-            // ウィンドウの横幅、高さを取得
-            var w = $(window).width();
-            var h = $(window).height();
-
-            // モーダルコンテンツの表示位置を取得
-            var x = (w - $(modal).outerWidth(true)) / 2;
-            var y = (h - $(modal).outerHeight(true)) / 2;
-
-            // モーダルコンテンツの表示位置を設定
-            $(modal).css({'left': x + 'px','top': y + 'px'});
+        $('#navi').empty();
+        // get arrow position
+        center = ($('#modal-contents').css('height').replace('px', '') / 2) - 20;
+        if (current_id == 0) {
+            $('#navi').append('<a id="next" href="javascript:void(0);"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>');
+            $('#navi #next').css({'top': center});
+        } else if (current_id == item_cnt) {
+            $('#navi').append('<a id="prev" href="javascript:void(0);"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>');
+            $('#navi #prev').css({'top': center});
+        } else {
+            $('#navi').append('<a id="prev" href="javascript:void(0);"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></a>');
+            $('#navi').append('<a id="next" href="javascript:void(0);"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>');
+            $('#navi #prev').css({'top': center});
+            $('#navi #next').css({'top': center});
         }
+    }
 
-        var current_id = $(this).attr('class');
-        current_id = current_id.match(/([0-9]+)/)[0];
-        // block id
-        var block_id = $(this).parent('div').attr('id');
-        var obj = $('div#' + block_id);
-        var tags = obj.html();
-        var arr = tags.match(/img src="(.*?)"/g);
-        var img_src = {};
-
-        for (i = 0; i < arr.length; i++) {
-            img_src[i] = arr[i].match(/img src="(.*?)"/)[1];
-        }
-
-        dispImage();
-
-        function dispImage() {
-            $('div#img-block').empty();
-            $('div#img-block').append('<img src="' + img_src[current_id] + '" />');
-            var img = new Image();
-            img.src = convertAbsUrl(img_src[current_id]);
-            $('.modal-contents').css('max-width', img.width);
-            $('.modal-contents').css('max-height', img.height);
-            modalResize();
-
-            if (current_id == 0) {
-                if (arr.length > 1) {
-                    $('div#img-block').append('<a id="next_img" href="javascript:void(0)"><img class="img_next" src="http://blog.dev/cakephp/img/arrow-right.png" /></a>');
-                }
-            } else if(current_id == arr.length - 1) {
-                $('div#img-block').append('<a id="prev_img" href="javascript:void(0)"><img class="img_prev" src="http://blog.dev/cakephp/img/arrow-left.png" /></a>');
-            } else {
-                $('div#img-block').append('<a id="next_img" href="javascript:void(0)"><img class="img_next" src="http://blog.dev/cakephp/img/arrow-right.png" /></a>');
-                $('div#img-block').append('<a id="prev_img" href="javascript:void(0)"><img class="img_prev" src="http://blog.dev/cakephp/img/arrow-left.png" /></a>');
-            }
-        }
-
-        function convertAbsUrl(src){
-            return $('<a>').attr('href', src).get(0).href;
-        }
-
-        $(document).on('click', '#next_img', function() {
-            current_id++;
-            dispImage();
-        });
-        $(document).on('click', '#prev_img', function() {
-            current_id--;
-            dispImage();
-        });
-  });
-});
+    function centeringModalContents() {
+        var w = $(window).width();
+        var h = $(window).height();
+        var cw = $('#modal-contents').outerWidth();
+        var ch = $('#modal-contents').outerHeight();
+        var pxleft = (w - cw) / 2;
+        var pxtop = (h - ch) / 2;
+        $('#modal-contents').css({'left':pxleft, 'top':pxtop});
+    }
+})

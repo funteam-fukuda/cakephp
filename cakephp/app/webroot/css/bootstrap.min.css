@@ -32,51 +32,6 @@ form#PostSearchForm div.checkbox {
 	padding: 0;
 }
 
-.modal-contents {
-	position:fixed;
-	display:none;
-	z-index:2;
-	width:50%;
-	margin:0;
-	background:#fff;
-}
-
-.modal-contents p {
-	margin:0;
-	padding:0;
-}
-
-.modal-overlay {
-	z-index:1;
-	display:none;
-	position:fixed;
-	top:0;
-	left:0;
-	width:100%;
-	height:120%;
-	background-color:rgba(0,0,0,0.75);
-}
-
-.modal-open {
-	color:#00f;
-	text-decoration:underline;
-}
-
-.modal-open:hover {
-	cursor:pointer;
-	color:#f00;
-}
-
-.modal-close {
-	color:#00f;
-	text-decoration:underline;
-}
-
-.modal-close:hover {
-	cursor:pointer;
-	color:#f00;
-}
-
 #result_zipcode {
 	display: none;
 	background: #fff;
@@ -102,7 +57,7 @@ form#CategoryIndexForm {
 div.view_cate {
 	margin-bottom: 10px;
 }
-
+/*
 .page-main {
 	position: relative;
 	z-index: 99;
@@ -135,7 +90,7 @@ div.view_cate {
 	color: #fff;
 	margin: 20px 0 0 80px;
 }
-
+*/
 div.postwrap {
 	padding-bottom: 20px;
 	border-bottom: 1px solid #ccc;
@@ -450,3 +405,41 @@ span.recente-create {
 }
 
 /* sidemenu End */
+
+/* slideshow modal */
+
+#modal-contents {
+	z-index: 211;
+	position: fixed;
+	background: #fff;
+	border: 2px solid #aaa;
+	display: none;
+	padding: 20px;
+}
+
+#modal-overlay {
+	z-index: 1;
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 120%;
+	background: rgba(0, 0, 0, 0.75);
+}
+
+#navi a#prev {
+	position: absolute;
+	top: 0;
+	left: -40px;
+	font-size: 30px;
+}
+
+#navi a#next {
+	position: absolute;
+	top: 0;
+	right: -40px;
+	font-size: 30px;
+}
+
+/* slideshow modal End */
