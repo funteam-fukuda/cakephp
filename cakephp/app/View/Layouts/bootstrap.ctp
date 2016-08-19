@@ -24,7 +24,7 @@
 <?php echo $this->Html->script('searchform.js'); ?>
 <?php echo $this->Html->script('slideshow.js'); ?>
 <?php echo $this->Html->script('zipcode.js'); ?>
-<!--<?php echo $this->Html->script('recent_comments.js'); ?>-->
+<?php echo $this->Html->script('recent_comments.js'); ?>
 
 	<div id="modal-contents" class="panel panel-default">
 		<div id="navi"></div>

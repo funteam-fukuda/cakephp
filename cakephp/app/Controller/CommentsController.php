@@ -19,7 +19,7 @@ class CommentsController extends AppController {
 	            ));
 			} else {
 				$this->Session->write('errors.Comment', $this->Comment->validationErrors);
-				$this->Session->setFlash(__('コメントの投稿に失敗しました。'), 'alert', array(
+				$this->Session->setFlash(__('failed to post comments.'), 'alert', array(
 	            	'plugin' => 'BoostCake',
 	            	'class' => 'alert-danger'
 	            ));

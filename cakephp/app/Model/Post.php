@@ -120,6 +120,11 @@ class Post extends AppModel	{
 		return $option;
 	}
 
+	public function beforeFilter() {
+		parent::beforeFilter();
+		
+	}
+
 	/*
 	public function beforeSave($options = array()) {
 		debug($this->data);
