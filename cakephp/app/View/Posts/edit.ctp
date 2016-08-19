@@ -39,7 +39,7 @@ echo '<div id="addimg"></div>';
 <div id="uploadform">
 
 <div class="upitem">
-<input id="lefile1" type="file" style="display:none">
+<input id="lefile1" name="data[Attachment][1][photo]" type="file" style="display:none">
 <div class="input-group">
 <input type="text" id="photoCover1" class="form-control upimg1" placeholder="select file...">
 <span class="input-group-btn"><button type="button" class="btn btn-info" onclick="$('input&#91;id=lefile1&#93;').click();">

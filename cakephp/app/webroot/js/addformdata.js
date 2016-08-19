@@ -10,11 +10,9 @@ $(function() {
 			$(e).find('input').eq(1).attr('class', 'form-control upimg' + (i+1));
 			$(e).find('input').eq(1).attr('id', 'photoCover' + (i+1));
 			$(e).find('button').attr('onclick', '$(\'input[id=lefile' + (i+1) + ']\').click();');
-
 			$('input[id=lefile' + (i+1)).change(function() {
 				$('.upimg' + (i+1)).val($(this).val());
 			});
-
 		});
 	});
 });

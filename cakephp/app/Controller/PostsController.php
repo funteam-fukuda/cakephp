@@ -94,6 +94,7 @@ class PostsController extends AppController {
 
     	if ($this->request->is(array('post', 'put'))) {
     		$this->Post->id = $id;
+            debug($this->request->data);
     		if ($this->Post->saveAll($this->request->data)) {
                 $this->Session->setFlash(__('your post has been updated.'), 'alert', array(
                     'plugin' => 'BoostCake',
