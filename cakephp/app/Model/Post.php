@@ -18,18 +18,7 @@ class Post extends AppModel	{
 				'rule' => array('multiple', array('min' => 2)),
 			'message' => 'タグは2つ以上選択して下さい。'
 			)
-		),
-		/*'image' => array(
-			'upload-file' => array(
-				'rule' => array('uploadError')
-			),
-			'extension' => array(
-				'rule' => array('extension', array(
-					'jpg', 'jpeg', 'png', 'gif')
-				),
-				'message' => array('file extension error')
-			)
-		)*/
+		)
 	);
 
 	// category

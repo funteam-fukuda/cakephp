@@ -18,4 +18,15 @@ class Attachment extends AppModel {
             'foreignKey' => 'post_id'
         )
     );
+
+    public $validate = array(
+        'photo' => array(
+            'extension' => array(
+                'rule' => array('extension', array(
+                    'jpg', 'jpeg', 'png', 'gif', '')
+                ),
+                'message' => array('ファイルのアップロードに失敗しました。')
+            )
+        )
+    );
 }

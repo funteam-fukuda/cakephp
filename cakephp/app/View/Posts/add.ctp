@@ -26,10 +26,11 @@ if (!empty($tag_error)) {
 	echo $tag_error[0];
 	echo '</div>';
 }
+
 ?>
 
 <div class="upitem">
-<input id="lefile1" type="file" style="display:none">
+<input id="lefile1" name="data[Attachment][1][photo]" type="file" style="display:none">
 <div class="input-group">
 <input type="text" id="photoCover1" class="form-control upimg1" placeholder="select file...">
 <span class="input-group-btn"><button type="button" class="btn btn-info" onclick="$('input&#91;id=lefile1&#93;').click();">
@@ -45,7 +46,7 @@ if (!empty($tag_error)) {
 </script>
 
 <div class="upitem">
-<input id="lefile2" type="file" style="display:none">
+<input id="lefile2" name="data[Attachment][2][photo]" type="file" style="display:none">
 <div class="input-group">
 <input type="text" id="photoCover2" class="form-control upimg2" placeholder="select file...">
 <span class="input-group-btn"><button type="button" class="btn btn-info" onclick="$('input&#91;id=lefile2&#93;').click();">
@@ -61,7 +62,7 @@ if (!empty($tag_error)) {
 </script>
 
 <div class="upitem">
-<input id="lefile3" type="file" style="display:none">
+<input id="lefile3" name="data[Attachment][3][photo]" type="file" style="display:none">
 <div class="input-group">
 <input type="text" id="photoCover3" class="form-control upimg3" placeholder="select file...">
 <span class="input-group-btn"><button type="button" class="btn btn-info" onclick="$('input&#91;id=lefile3&#93;').click();">
@@ -76,4 +77,15 @@ if (!empty($tag_error)) {
   });
 </script>
 
-<?php echo $this->Form->end(array('name' => 'Save Post', 'class' => 'btn btn-success btn-block btn-lg')); ?>
+<?php 
+
+if (!empty($img_error)) {
+	echo '<div class="error-message imgerr">';
+	foreach ($img_error as $value) {
+		echo $value['photo'][0];
+		echo '</div>';
+	}
+}
+
+echo $this->Form->end(array('name' => 'Save Post', 'class' => 'btn btn-success btn-block btn-lg'));
+?>

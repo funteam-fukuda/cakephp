@@ -34,6 +34,15 @@ if (!empty($tag_error)) {
 echo '<div id="regist_img"></div>';
 
 echo '<div id="addimg"></div>';
+
+if (!empty($img_error)) {
+	echo '<div class="error-message imgerr">';
+	foreach ($img_error as $value) {
+		echo $value['photo'][0];
+		echo '</div>';
+	}
+}
+
 ?>
 
 <div id="uploadform">

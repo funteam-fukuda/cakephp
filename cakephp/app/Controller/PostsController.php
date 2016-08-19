@@ -45,7 +45,6 @@ class PostsController extends AppController {
 
     	if ($this->request->is('post')) {
             $this->request->data['Post']['user_id'] = $this->Auth->user('id');
-    		#$this->Post->create();
     		if ($this->Post->saveAll($this->request->data)) {
                 $this->Session->setFlash(__('Your post has been saved.'), 'alert', array(
                     'plugin' => 'BoostCake',
@@ -57,6 +56,8 @@ class PostsController extends AppController {
             // tagが2つ以上選択されていない場合のエラーメッセージを取得
             $errors = $this->Post->validationErrors;
             if (!empty($errors['Tag'])) $this->set('tag_error', $errors['Tag']);
+            // Attachment error
+            if (!empty($errors['Attachment'])) $this->set('img_error', $errors['Attachment']);
 
             $this->Session->setFlash(__('Unable to add your post.'), 'alert', array(
                 'plugin' => 'BoostCake',
@@ -94,7 +95,6 @@ class PostsController extends AppController {
 
     	if ($this->request->is(array('post', 'put'))) {
     		$this->Post->id = $id;
-            debug($this->request->data);
     		if ($this->Post->saveAll($this->request->data)) {
                 $this->Session->setFlash(__('your post has been updated.'), 'alert', array(
                     'plugin' => 'BoostCake',
@@ -104,7 +104,9 @@ class PostsController extends AppController {
     		} else {
                 // tagが2つ以上選択されていない場合のエラーメッセージを取得
                 $errors = $this->Post->validationErrors;
-                if (!empty($errors)) $this->set('tag_error', $errors['Tag']);
+                if (!empty($errors['Tag'])) $this->set('tag_error', $errors['Tag']);
+                // Attachment error
+                if (!empty($errors['Attachment'])) $this->set('img_error', $errors['Attachment']);
 
                 $this->Session->setFlash(__('Unable to update your post.'), 'alert', array(
                     'plugin' => 'BoostCake',
