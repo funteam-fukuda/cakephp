@@ -6,12 +6,6 @@ class GroupsController extends AppController {
 
 	public $components = array('Paginator');
 
-	public function beforeFilter() {
-		parent::beforeFilter();
-
-		//$this->Auth->allow();
-	}
-
 	public function index() {
 		$this->Group->recursive = 0;
 		$this->set('groups', $this->Paginator->paginate());

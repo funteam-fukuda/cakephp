@@ -1,11 +1,11 @@
 <?php
-$this->Html->addCrumb('Post', '/');
-$this->Html->addCrumb('Search');
+$this->Html->addCrumb('Posts', '/');
+$this->Html->addCrumb('Archives');
 ?>
 
-<p>検索結果は<?php echo (!empty($posts)) ? count($posts) : 0; ?>件です。</p>
-<?php if(!empty($posts)): ?>
-<?php foreach ($posts as $post): ?>
+<?php if(!empty($archives)): ?>
+
+<?php foreach ($archives as $post): ?>
 <div class="content">
 <h3><?php echo $this->Html->link($post['Post']['title'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?></h3>
 <ul class="meta-list list-inline">

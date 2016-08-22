@@ -142,4 +142,9 @@ class Post extends AppModel	{
 		return $this->field('id', array('id' => $post, 'user_id' => $user)) != false;
 	}
 
+	public function get_archive() {
+		$sql = 'select date_format(created, "%Y/%m") as time, count(id) as count from posts group by date_format(created, "%Y/%m");';
+		return $this->query($sql);
+	}
+
 }

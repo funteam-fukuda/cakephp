@@ -408,6 +408,10 @@ span.recente-create {
 	font-size: 12px;
 }
 
+li.archive-li {
+	margin: 3px 0;
+}
+
 /* sidemenu End */
 
 /* slideshow modal */

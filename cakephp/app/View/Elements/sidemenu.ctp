@@ -1,4 +1,4 @@
-<div class="panel panel-default">
+<div class="panel panel-default" style="border-radius:0;">
 <div class="panel-heading">
 <h3 class="panel-title">Search Form</h3>
 </div>
@@ -33,7 +33,7 @@
 </div><!-- panel-body -->
 </div><!-- panel -->
 
-<div class="panel panel-default">
+<div class="panel panel-default" style="border-radius:0;">
 <div class="panel-heading">
 <h3 class="panel-title">PostalCodeSearch</h3>
 </div>
@@ -64,7 +64,7 @@ echo $this->Form->end();
 </div><!-- panel-body -->
 </div><!-- panel -->
 
-<div class="panel panel-default">
+<div class="panel panel-default" style="border-radius:0;">
 <div class="panel-heading">
 <h3 class="panel-title">Tag Cloud</h3>
 </div>
@@ -79,7 +79,7 @@ echo $this->Form->end();
 </div><!-- panel-body -->
 </div><!-- panel -->
 
-<div class="panel panel-default">
+<div class="panel panel-default" style="border-radius:0;">
 <div class="panel-heading">
 <h3 class="panel-title">Recent Comments</h3>
 </div>
@@ -94,6 +94,27 @@ echo $this->Form->end();
 			</dt>
 			<dd><?php echo mb_strimwidth(h($val['Comment']['body']), 0, 100, '...', 'utf-8'); ?></dd>
 		</dl>
+	</li>
+<?php endforeach; ?>
+</ul>
+</div><!-- recent_comments -->
+</div><!-- panel-body -->
+</div><!-- panel -->
+
+<div class="panel panel-default" style="border-radius:0;">
+<div class="panel-heading">
+<h3 class="panel-title">Archives</h3>
+</div>
+<div class="panel-body">
+<div id="recent_comments">
+<ul>
+<?php foreach($archive as $key => $val): ?>
+	<li class="archive-li">
+	<?php
+		$date_list = split('/', $val[0]['time']);
+		echo $this->Html->link($val[0]['time'], array('controller' => 'posts', 'action' => 'archives', $date_list[0], $date_list[1]));
+	?>
+	<?php echo '(' . $val[0]['count'] . ')'; ?>
 	</li>
 <?php endforeach; ?>
 </ul>

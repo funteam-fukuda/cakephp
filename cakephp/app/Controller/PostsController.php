@@ -214,17 +214,16 @@ class PostsController extends AppController {
         //$this->autoRender = false;
         $this->set('data', $this->request);
         if ($this->request->is(array('ajax', 'post'))) {
-            $this->set('data', $this->request);
         }
-        /*
-        debug('aiueo');
-        debug($this->request);
-        $data = json_decode(file_get_contents('php://input'), true);
-        debug($data);
-        parse_str(file_get_contents('php://input'), $put_param);
-        debug($put_param);
-        debug($this->request->data);
-        $this->redirect(array('action' => 'index'));
-        */
+    }
+
+    public function archives($y, $m) {
+        $archives = $this->Post->find('all', array(
+            'conditions' => array(
+                'DATE_FORMAT(Post.created, "%Y/%m")' => "{$y}/{$m}"
+                )
+            )
+        );
+        $this->set(compact('archives'));
     }
 }

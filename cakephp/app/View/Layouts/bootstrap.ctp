@@ -3,17 +3,17 @@
 <head>
     <?php echo $this->Html->charset(); ?>
     <title>
-        <?php echo $title_for_layout; ?>
+		<?php echo $this->fetch('title'); ?>
     </title>
     <?php
 
         echo $this->Html->meta('icon');
 
         // Twitter Bootstrap 3.0 CDN
-        echo $this->Html->script('http://code.jquery.com/jquery-1.11.0.min.js');
-        echo $this->Html->script('https://code.jquery.com/ui/1.10.3/jquery-ui.js');
-        echo $this->Html->script('bootstrap.min.js');
         echo $this->Html->css('bootstrap.min.css');
+        echo $this->Html->script('http://code.jquery.com/jquery-1.11.0.min.js');
+        //echo $this->Html->script('https://code.jquery.com/ui/1.10.3/jquery-ui.js');
+        echo $this->Html->script('bootstrap.min.js');
 
         echo $this->fetch('meta');
         echo $this->fetch('css');
@@ -71,7 +71,6 @@
  
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <?php echo $this->Html->script('bootstrap.min'); ?>
     <?php echo $this->fetch('script'); ?>
   </body>
 </html>

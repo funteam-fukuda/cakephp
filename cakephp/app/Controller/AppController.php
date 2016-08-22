@@ -102,5 +102,8 @@ class AppController extends Controller {
         	}
         	$this->Session->delete('errors');
         }
+
+        // archive
+        $this->set('archive', $this->Post->get_archive());
 	}
 }
