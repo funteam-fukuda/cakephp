@@ -16,13 +16,13 @@ echo $this->Form->input('category_id', array(
 	'class' => 'form-control',
 	'div' => 'form-group',
 	'type' => 'select',
-	'options' => $posts));
+	'options' => $head_categories));
 
 echo $this->Form->input('Tag', array(
 	'div' => 'checkbox_wrap',
 	'type' => 'select',
 	'multiple' => 'checkbox',
-	'options' => $tag
+	'options' => $head_tags
 	));
 
 if (!empty($tag_error)) {

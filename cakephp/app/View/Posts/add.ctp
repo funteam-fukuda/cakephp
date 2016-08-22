@@ -12,13 +12,13 @@ echo $this->Form->input('category_id', array(
 	'type' => 'select',
 	'div' => 'form-group',
 	'class' => 'form-control',
-	'options' => $posts));
+	'options' => $head_categories));
 
 echo $this->Form->input('Tag', array(
 	'div' => 'checkbox_wrap',
 	'type' => 'select',
 	'multiple' => 'checkbox',
-	'options' => $tag
+	'options' => $head_tags
 	));
 
 if (!empty($tag_error)) {
@@ -29,53 +29,31 @@ if (!empty($tag_error)) {
 
 ?>
 
+<?php
+for ($i=0;$i<3;$i++) {
+	$file = <<< EOF
+
 <div class="upitem">
-<input id="lefile1" name="data[Attachment][1][photo]" type="file" style="display:none">
+<input id="lefile{$i}" name="data[Attachment][{$i}][photo]" type="file" style="display:none">
 <div class="input-group">
-<input type="text" id="photoCover1" class="form-control upimg1" placeholder="select file...">
-<span class="input-group-btn"><button type="button" class="btn btn-info" onclick="$('input&#91;id=lefile1&#93;').click();">
+<input type="text" id="photoCover{$i}" class="form-control upimg{$i}" placeholder="select file...">
+<span class="input-group-btn"><button type="button" class="btn btn-info" onclick="$('input&#91;id=lefile{$i}&#93;').click();">
 <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
 </button></span>
 </div>
 </div><!-- upitem -->
 
 <script>
-  $('input[id=lefile1]').change(function() {
-    $('#photoCover1').val($(this).val());
+  $('input[id=lefile{$i}]').change(function() {
+    $('#photoCover{$i}').val($(this).val());
   });
 </script>
 
-<div class="upitem">
-<input id="lefile2" name="data[Attachment][2][photo]" type="file" style="display:none">
-<div class="input-group">
-<input type="text" id="photoCover2" class="form-control upimg2" placeholder="select file...">
-<span class="input-group-btn"><button type="button" class="btn btn-info" onclick="$('input&#91;id=lefile2&#93;').click();">
-<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-</button></span>
-</div>
-</div><!-- upitem -->
+EOF;
 
-<script>
-  $('input[id=lefile2]').change(function() {
-    $('#photoCover2').val($(this).val());
-  });
-</script>
-
-<div class="upitem">
-<input id="lefile3" name="data[Attachment][3][photo]" type="file" style="display:none">
-<div class="input-group">
-<input type="text" id="photoCover3" class="form-control upimg3" placeholder="select file...">
-<span class="input-group-btn"><button type="button" class="btn btn-info" onclick="$('input&#91;id=lefile3&#93;').click();">
-<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-</button></span>
-</div>
-</div><!-- upitem -->
-
-<script>
-  $('input[id=lefile3]').change(function() {
-    $('#photoCover3').val($(this).val());
-  });
-</script>
+echo $file;
+}
+?>
 
 <?php 
 

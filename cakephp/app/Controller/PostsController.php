@@ -13,7 +13,7 @@ class PostsController extends AppController {
 
     public function beforeFilter() {
         parent::beforeFilter();
-        $this->Auth->allow('index', 'view', 'search', 'zipcode');
+        $this->Auth->allow('index', 'view', 'search', 'zipcode', 'archives');
     }
 
     public function index() {
@@ -34,14 +34,6 @@ class PostsController extends AppController {
     }
 
     public function add() {
-        
-        $this->loadModel('Category', 'Tag');
-
-        // add to categories table
-        $this->set('posts', $this->Category->find('list', array('fields' => 'Category.name')));
-
-        // tag
-        $this->set('tag', $this->Tag->find('list'));
 
     	if ($this->request->is('post')) {
             $this->request->data['Post']['user_id'] = $this->Auth->user('id');
@@ -68,8 +60,6 @@ class PostsController extends AppController {
 
     public function edit($id = null) {
 
-        $this->loadModel('Category', 'Tag');
-
     	if (!$id) {
     		throw new NotFoundException(__('Invalid post' . __line__ . 'line..'));
     	}
@@ -86,12 +76,6 @@ class PostsController extends AppController {
         }
         // upload
         $this->set('uploads', $this->Post->findById($id));
-
-        // add to categories table
-        $this->set('posts', $this->Category->find('list', array('fields' => 'Category.name')));
-
-        // tag
-        $this->set('tag', $this->Tag->find('list'));
 
     	if ($this->request->is(array('post', 'put'))) {
     		$this->Post->id = $id;
@@ -218,13 +202,11 @@ class PostsController extends AppController {
     }
 
     public function archives($y, $m) {
+        $conditions = array('DATE_FORMAT(Post.created, "%Y/%m")' => "{$y}/{$m}");
         $archives = $this->Post->find('all', array(
-            'conditions' => array(
-                'DATE_FORMAT(Post.created, "%Y/%m")' => "{$y}/{$m}"
-                )
+            'conditions' => $conditions
             )
         );
-        $conditions = array('DATE_FORMAT(Post.created, "%Y/%m")' => "{$y}/{$m}");
         $this->paginate = $this->Post->post_pagenate();
         $this->set('archives', $this->paginate($conditions));
     }

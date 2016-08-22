@@ -25,7 +25,6 @@ class CommentsController extends AppController {
 	            ));
 			}
             return $this->redirect($this->referer());
-            //return $this->redirect(array('controller' => 'posts', 'action' => 'view', $this->request->data['Comment']['post_id']));
 		}
 	}
 

@@ -11,7 +11,6 @@ class UsersController extends AppController {
 		parent::beforeFilter();
 		// addページ、logoutページは認証外とする
 		$this->Auth->allow('add', 'logout');
-		//$this->Auth->allow('initDB');
 	}
 
     public function login() {
@@ -113,25 +112,4 @@ class UsersController extends AppController {
         ));
 		return $this->redirect(array('action' => 'index'));
 	}
-
-	/*public function initDB() {
-		$group = $this->User->Group;
-		// admin
-		$group->id = 1;
-		$this->Acl->allow($group, 'controllers');
-
-		// manager
-		$group->id = 2;
-		$this->Acl->deny($group, 'controllers');
-		$this->Acl->allow($group, 'controllers/Posts');
-
-		// user
-		$group->id = 3;
-		$this->Acl->deny($group, 'controllers');
-		$this->Acl->allow($group, 'controllers/Posts/add');
-		$this->Acl->allow($group, 'controllers/Posts/edit');
-
-		echo 'All done';
-		exit;
-	}*/
 }
