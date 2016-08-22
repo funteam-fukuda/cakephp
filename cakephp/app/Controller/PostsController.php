@@ -224,6 +224,8 @@ class PostsController extends AppController {
                 )
             )
         );
-        $this->set(compact('archives'));
+        $conditions = array('DATE_FORMAT(Post.created, "%Y/%m")' => "{$y}/{$m}");
+        $this->paginate = $this->Post->post_pagenate();
+        $this->set('archives', $this->paginate($conditions));
     }
 }

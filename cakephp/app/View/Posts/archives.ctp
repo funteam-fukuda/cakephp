@@ -5,6 +5,15 @@ $this->Html->addCrumb('Archives');
 
 <?php if(!empty($archives)): ?>
 
+<div id="post-sort">
+	<ul class="list-inline">
+		<li><span>並び替え:</span></li>
+		<li><?php echo $this->Paginator->sort('created', '投稿日'); ?></li>
+		<li><?php echo $this->Paginator->sort('modified', '更新日'); ?></li>
+		<li><?php echo $this->Paginator->sort('user_id', 'ユーザー'); ?></li>
+	</ul>
+</div>
+
 <?php foreach ($archives as $post): ?>
 <div class="content">
 <h3><?php echo $this->Html->link($post['Post']['title'], array('controller' => 'posts', 'action' => 'view', $post['Post']['id'])); ?></h3>
@@ -34,4 +43,11 @@ $this->Html->addCrumb('Archives');
 <?php echo mb_strimwidth($post['Post']['body'], 0, 300, '...', 'utf-8'); ?>
 </div><!-- content -->
 <?php endforeach; ?>
+
+<ul class="pager">
+<?php echo $this->Paginator->prev('< prev', array(), null, array('class' => 'prev disabled')); ?>
+<?php echo $this->Paginator->numbers(array('separator' => '')); ?>
+<?php echo $this->Paginator->next('next >', array(), null, array('class' => 'next disabled')); ?>
+</ul>
+
 <?php endif; ?>
