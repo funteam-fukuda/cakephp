@@ -38,7 +38,8 @@ class EmailConfig {
 
 	public $default = array(
 		'transport' => 'Mail',
-		'from' => 'you@localhost',
+		'from' => array('n_fukuda@funteam.co.jp' => 'blog.dev'),
+		'subject' => '記事にコメントの投稿がありました。'
 		//'charset' => 'utf-8',
 		//'headerCharset' => 'utf-8',
 	);

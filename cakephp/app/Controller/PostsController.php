@@ -34,7 +34,6 @@ class PostsController extends AppController {
     }
 
     public function add() {
-
     	if ($this->request->is('post')) {
             $this->request->data['Post']['user_id'] = $this->Auth->user('id');
     		if ($this->Post->saveAll($this->request->data)) {

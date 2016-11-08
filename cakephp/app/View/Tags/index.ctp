@@ -59,7 +59,8 @@ $options = array(
 	'div' => false,
 	'class' => 'btn btn-success');
 echo $this->Form->end($options);
-if (!empty(@$out)) echo '<p id="errmsg">' . @$out[$i]['name'] . '</p>';
+
+if (!empty($out[$i]['name'])) echo '<p id="errmsg">' . $out[$i]['name'] . '</p>';
 ?>
 </td>
 <td><?php echo $this->Form->postLink('Delete', array('action' => 'delete', $tag['Tag']['id']), array('class' => 'btn btn-danger'), '削除しても良いですか？'); ?></td>
